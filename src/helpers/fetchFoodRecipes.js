@@ -1,0 +1,11 @@
+export const getAllFoodRecipes = async () => {
+  const request = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+  const result = request.json();
+  return result;
+};
+
+export const getFoodCategories = async () => {
+  const request = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+  const result = await request.json();
+  return result;
+};

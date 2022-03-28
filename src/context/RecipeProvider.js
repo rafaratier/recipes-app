@@ -1,5 +1,5 @@
 import React from 'react';
-import { propTypes } from 'react-bootstrap/esm/Image';
+import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
 
 function RecipeProvider({ children }) {
@@ -13,7 +13,7 @@ function RecipeProvider({ children }) {
 }
 
 RecipeProvider.propTypes = {
-  children: propTypes.rounded.isRequired,
+  children: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default RecipeProvider;
