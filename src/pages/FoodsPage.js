@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getFoodCategories } from '../helpers/fetchFoodRecipes';
-import Categoriesbuttons from '../components/CategoriesButtons';
+import CategoriesButtons from '../components/CategoriesButtons';
 
 function FoodsPage() {
   const [foodCategories, setFoodCategories] = useState([]);
@@ -16,7 +16,7 @@ function FoodsPage() {
   return (
     <div>
       <h1>FOODS PAGE</h1>
-      <Categoriesbuttons categories={ foodCategories } />
+      <CategoriesButtons categories={ foodCategories } />
     </div>
   );
 }

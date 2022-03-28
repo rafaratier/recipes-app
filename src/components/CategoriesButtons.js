@@ -8,6 +8,16 @@ function CategoriesButtons(props) {
   const [buttonValue, setButtonValue] = useState('all');
   console.log(buttonValue);
 
+  const handleClick = ({ target }) => {
+    if (target.checked) {
+      setButtonValue(target.value);
+    }
+    if (target.value === buttonValue) {
+      target.checked = false;
+      setButtonValue('all');
+    }
+  };
+
   return (
     <div>
       <label htmlFor="category">
@@ -33,8 +43,7 @@ function CategoriesButtons(props) {
                 id={ category.strCategory }
                 type="radio"
                 value={ category.strCategory }
-                onClick={ ({ target }) => (target.checked
-                  ? setButtonValue(target.value) : setButtonValue('all')) }
+                onClick={ ({ target }) => handleClick({ target }) }
               />
             </label>
           );
