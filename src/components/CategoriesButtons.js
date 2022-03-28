@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 function CategoriesButtons(props) {
-  const { categories } = props;
+  const { categories, selectedCategory, getSelectedCategory } = props;
   const CATEGORIES_LIMIT = 4;
-
-  const [buttonValue, setButtonValue] = useState('all');
-  console.log(buttonValue);
 
   const handleClick = ({ target }) => {
     if (target.checked) {
-      setButtonValue(target.value);
+      getSelectedCategory(target.value);
     }
-    if (target.value === buttonValue) {
+    if (target.value === selectedCategory) {
       target.checked = false;
-      setButtonValue('all');
+      getSelectedCategory('all');
     }
   };
 
@@ -29,7 +26,7 @@ function CategoriesButtons(props) {
           type="radio"
           value="all"
           onClick={ ({ target }) => (target.checked
-            ? setButtonValue(target.value) : setButtonValue('all')) }
+            ? getSelectedCategory(target.value) : getSelectedCategory('all')) }
         />
       </label>
       {categories.map((category, index) => {
@@ -56,6 +53,8 @@ function CategoriesButtons(props) {
 
 CategoriesButtons.propTypes = {
   categories: PropTypes.instanceOf(Array).isRequired,
+  getSelectedCategory: PropTypes.func.isRequired,
+  selectedCategory: PropTypes.string.isRequired,
 };
 
 export default CategoriesButtons;

@@ -13,10 +13,17 @@ function FoodsPage() {
     fetchCategories();
   }, []);
 
+  const [selectedCategory, setCategory] = useState('all');
+  console.log(selectedCategory);
+
   return (
     <div>
       <h1>FOODS PAGE</h1>
-      <CategoriesButtons categories={ foodCategories } />
+      <CategoriesButtons
+        categories={ foodCategories }
+        selectedCategory={ selectedCategory }
+        getSelectedCategory={ setCategory }
+      />
     </div>
   );
 }
