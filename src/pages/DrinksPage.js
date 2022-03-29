@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {
-  getFoodCategories,
-  getAllFoodRecipes,
-  getRecipesFromCategory,
-} from '../helpers/fetchFoodRecipes';
+  getAllDrinksRecipes,
+  getDrinksCategories,
+  getDrinksFromCategory,
+} from '../helpers/fetchDrinksRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
-import FoodRecipesShowCase from '../components/FoodRecipesShowCase';
+import DrinksRecipesShowCase from '../components/DrinksRecipesShowCase';
 
-function FoodsPage() {
-  const [foodCategories, setFoodCategories] = useState([]);
+function DrinksPage() {
+  const [drinksCategories, setdrinksCategories] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const result = await getFoodCategories();
-      setFoodCategories(result.meals);
+      const result = await getDrinksCategories();
+      setdrinksCategories(result.drinks);
     };
     fetchCategories();
   }, []);
@@ -26,9 +26,9 @@ function FoodsPage() {
     const getRecipes = async () => {
       let recipesArray = [];
       if (selectedCategory === 'all') {
-        recipesArray = await getAllFoodRecipes();
+        recipesArray = await getAllDrinksRecipes();
       } else {
-        recipesArray = await getRecipesFromCategory(selectedCategory);
+        recipesArray = await getDrinksFromCategory(selectedCategory);
       }
       setRecipes(recipesArray);
     };
@@ -37,15 +37,15 @@ function FoodsPage() {
 
   return (
     <div>
-      <h1>FOODS PAGE</h1>
+      <h1>DRINKS PAGE</h1>
       <CategoriesButtons
-        categories={ foodCategories }
+        categories={ drinksCategories }
         selectedCategory={ selectedCategory }
         getSelectedCategory={ setCategory }
       />
-      <FoodRecipesShowCase recipes={ recipes.meals } />
+      <DrinksRecipesShowCase recipes={ recipes.drinks } />
     </div>
   );
 }
 
-export default FoodsPage;
+export default DrinksPage;
