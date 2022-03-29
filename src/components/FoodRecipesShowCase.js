@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RecipeCard from './RecipeCard';
+import RecipesCard from './RecipesCard';
 
-function RecipesShowCase(props) {
+function FoodRecipesShowCase(props) {
   const { recipes } = props;
   const RECIPES_LIMIT = 11;
 
   return (
-    <div>
+    <div className="recipes-container">
       {recipes && recipes.map((recipe, index) => {
         if (index <= RECIPES_LIMIT) {
           return (
-            <RecipeCard
+            <RecipesCard
               key={ index }
+              index={ index }
+              recipeId={ recipe.idMeal }
               recipeThumbnail={ recipe.strMealThumb }
               recipeName={ recipe.strMeal }
             />
@@ -24,12 +26,12 @@ function RecipesShowCase(props) {
   );
 }
 
-RecipesShowCase.propTypes = {
+FoodRecipesShowCase.propTypes = {
   recipes: PropTypes.instanceOf(Array),
 };
 
-RecipesShowCase.defaultProps = {
+FoodRecipesShowCase.defaultProps = {
   recipes: [],
 };
 
-export default RecipesShowCase;
+export default FoodRecipesShowCase;
