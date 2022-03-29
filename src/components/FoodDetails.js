@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getRecipe } from '../helpers/fetchFoodRecipes';
+import RecipeDetails from './RecipeDetails';
 
 function FoodDetails() {
   const { id } = useParams();
@@ -10,7 +11,7 @@ function FoodDetails() {
   useEffect(() => {
     const fetchRecipe = async () => {
       const result = await getRecipe(id);
-      setRecipe(result);
+      setRecipe(result.meals);
     };
     fetchRecipe();
   }, [id]);
@@ -20,6 +21,12 @@ function FoodDetails() {
   return (
     <div>
       <h1>DETALHES DA COMIDA</h1>
+      {recipe && recipe.map((mealObj) => (
+        <RecipeDetails
+          key={ mealObj.strMeal }
+          recipe={ mealObj }
+        />
+      ))}
     </div>
   );
 }
