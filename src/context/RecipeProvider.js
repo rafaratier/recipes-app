@@ -13,7 +13,7 @@ function RecipeProvider({ children }) {
 }
 
 RecipeProvider.propTypes = {
-  children: PropTypes.instanceOf(Object).isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default RecipeProvider;
