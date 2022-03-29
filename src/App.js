@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import Nationalities from './pages/Nationalities';
 import FoodDetails from './components/FoodDetails';
 import DrinksDetails from './components/DrinksDetails';
+import InProgress from './pages/InProgress';
 
 function App() {
   return (
@@ -45,6 +46,8 @@ function App() {
           />
           <Route exact path="/foods/:id" component={ FoodDetails } />
           <Route exact path="/drinks/:id" component={ DrinksDetails } />
+          <Route exact path="/foods/:id/in-progress" component={ () => <InProgress /> } />
+          <Route exact path="/drinks/in-progress" component={ () => <InProgress /> } />
         </Switch>
       </div>
     </RecipeProvider>
