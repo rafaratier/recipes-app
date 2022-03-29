@@ -1,11 +1,16 @@
-import React from 'react';
-import { propTypes } from 'react-bootstrap/esm/Image';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
 
 function RecipeProvider({ children }) {
+  const [recipes, setRecipes] = useState({
+    meals: [],
+    drinks: [],
+  });
+
   return (
     <RecipeContext.Provider
-      value={ {} }
+      value={ { setRecipes, recipes } }
     >
       {children}
     </RecipeContext.Provider>
@@ -13,7 +18,7 @@ function RecipeProvider({ children }) {
 }
 
 RecipeProvider.propTypes = {
-  children: propTypes.rounded.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default RecipeProvider;
