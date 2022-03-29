@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   getAllDrinksRecipes,
   getDrinksCategories,
@@ -7,6 +7,7 @@ import {
 import CategoriesButtons from '../components/CategoriesButtons';
 import DrinksRecipesShowCase from '../components/DrinksRecipesShowCase';
 import FooterMenu from '../components/FooterMenu';
+import RecipeContext from '../context/RecipeContext';
 
 function DrinksPage() {
   const [drinksCategories, setdrinksCategories] = useState([]);
@@ -21,7 +22,7 @@ function DrinksPage() {
 
   const [selectedCategory, setCategory] = useState('all');
 
-  const [recipes, setRecipes] = useState([]);
+  const { recipes, setRecipes } = useContext(RecipeContext);
 
   useEffect(() => {
     const getRecipes = async () => {

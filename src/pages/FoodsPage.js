@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   getFoodCategories,
   getAllFoodRecipes,
@@ -7,6 +7,7 @@ import {
 import CategoriesButtons from '../components/CategoriesButtons';
 import FoodRecipesShowCase from '../components/FoodRecipesShowCase';
 import FooterMenu from '../components/FooterMenu';
+import RecipeContext from '../context/RecipeContext';
 
 function FoodsPage() {
   const [foodCategories, setFoodCategories] = useState([]);
@@ -21,7 +22,7 @@ function FoodsPage() {
 
   const [selectedCategory, setCategory] = useState('all');
 
-  const [recipes, setRecipes] = useState([]);
+  const { recipes, setRecipes } = useContext(RecipeContext);
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -34,6 +35,7 @@ function FoodsPage() {
       setRecipes(recipesArray);
     };
     getRecipes();
+    console.log(recipes);
   }, [selectedCategory]);
 
   return (
