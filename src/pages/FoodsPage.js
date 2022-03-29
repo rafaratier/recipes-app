@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { getFoodCategories } from '../helpers/fetchFoodRecipes';
+import {
+  getFoodCategories,
+  getAllFoodRecipes,
+  getRecipesFromCategory,
+} from '../helpers/fetchFoodRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
+import RecipesShowCase from '../components/RecipesShowCase';
 
 function FoodsPage() {
   const [foodCategories, setFoodCategories] = useState([]);
@@ -14,7 +19,21 @@ function FoodsPage() {
   }, []);
 
   const [selectedCategory, setCategory] = useState('all');
-  console.log(selectedCategory);
+
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    const getRecipes = async () => {
+      let recipesArray = [];
+      if (selectedCategory === 'all') {
+        recipesArray = await getAllFoodRecipes();
+      } else {
+        recipesArray = await getRecipesFromCategory(selectedCategory);
+      }
+      setRecipes(recipesArray);
+    };
+    getRecipes();
+  }, [selectedCategory]);
 
   return (
     <div>
@@ -24,6 +43,7 @@ function FoodsPage() {
         selectedCategory={ selectedCategory }
         getSelectedCategory={ setCategory }
       />
+      <RecipesShowCase recipes={ recipes.meals } />
     </div>
   );
 }
