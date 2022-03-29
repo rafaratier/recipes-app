@@ -6,6 +6,7 @@ import {
 } from '../helpers/fetchFoodRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
 import FoodRecipesShowCase from '../components/FoodRecipesShowCase';
+import FooterMenu from '../components/FooterMenu';
 
 function FoodsPage() {
   const [foodCategories, setFoodCategories] = useState([]);
@@ -44,6 +45,7 @@ function FoodsPage() {
         getSelectedCategory={ setCategory }
       />
       <FoodRecipesShowCase recipes={ recipes.meals } />
+      <FooterMenu />
     </div>
   );
 }

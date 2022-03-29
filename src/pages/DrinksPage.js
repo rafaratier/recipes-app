@@ -6,6 +6,7 @@ import {
 } from '../helpers/fetchDrinksRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
 import DrinksRecipesShowCase from '../components/DrinksRecipesShowCase';
+import FooterMenu from '../components/FooterMenu';
 
 function DrinksPage() {
   const [drinksCategories, setdrinksCategories] = useState([]);
@@ -44,6 +45,7 @@ function DrinksPage() {
         getSelectedCategory={ setCategory }
       />
       <DrinksRecipesShowCase recipes={ recipes.drinks } />
+      <FooterMenu />
     </div>
   );
 }
