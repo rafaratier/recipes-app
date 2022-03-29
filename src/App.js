@@ -13,6 +13,8 @@ import ExploreDrinks from './pages/ExploreDrinks';
 import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
 import Profile from './pages/Profile';
 import Nationalities from './pages/Nationalities';
+import FoodDetails from './components/FoodDetails';
+import DrinksDetails from './components/DrinksDetails';
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
             path="/explore/foods/nationalities"
             component={ () => <Nationalities /> }
           />
+          <Route exact path="/foods/:id" component={ FoodDetails } />
+          <Route exact path="/drinks/:id" component={ DrinksDetails } />
         </Switch>
       </div>
     </RecipeProvider>
