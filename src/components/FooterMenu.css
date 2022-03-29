@@ -1,4 +1,9 @@
 .footer-menu-container {
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  padding: 10px;
   position: fixed;
+  width: 100%;
 }
