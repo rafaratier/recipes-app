@@ -6,6 +6,7 @@ import {
 } from '../helpers/fetchDrinksRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
 import DrinksRecipesShowCase from '../components/DrinksRecipesShowCase';
+import Header from '../components/Header';
 
 function DrinksPage() {
   const [drinksCategories, setdrinksCategories] = useState([]);
@@ -37,6 +38,8 @@ function DrinksPage() {
 
   return (
     <div>
+      <Header title="Drinks" />
+
       <h1>DRINKS PAGE</h1>
       <CategoriesButtons
         categories={ drinksCategories }
@@ -45,6 +48,7 @@ function DrinksPage() {
       />
       <DrinksRecipesShowCase recipes={ recipes.drinks } />
     </div>
+
   );
 }
 
