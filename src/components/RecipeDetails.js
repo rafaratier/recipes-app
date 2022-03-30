@@ -33,18 +33,6 @@ function RecipeDetails(props) {
 
   const YOUTUBE_VIDEO_ID = getVideoId(recipe.strYoutube);
 
-  const isFavoriteIconStyle = {
-    background: `url(${blackHeartIcon}) no-repeat`,
-    width: '33px',
-    height: '33px',
-  };
-
-  const notFavoriteIconStyle = {
-    background: `url(${whiteHeartIcon}) no-repeat`,
-    width: '30px',
-    height: '30px',
-  };
-
   return (
     <div>
       <img
@@ -58,22 +46,27 @@ function RecipeDetails(props) {
       <h4 data-testid="recipe-category">{ recipe.strCategory }</h4>
 
       <button
-        data-testid="share-btn"
         type="button"
-        style={ isFavorite ? isFavoriteIconStyle : notFavoriteIconStyle }
-        alt="favorite recipe"
+        alt="favorite recipe button"
         onClick={ () => setFavorite((prevState) => !prevState) }
-      />
+      >
+        <img
+          data-testid="favorite-btn"
+          src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+          alt="favorite recipe"
+        />
+      </button>
 
       <button
-        data-testid="favorite-btn"
         type="button"
-        style={ { background: `url(${shareIcon})`,
-          width: '30px',
-          height: '30px',
-          backgroundRepeat: 'norepeat' } }
         alt="share"
-      />
+      >
+        <img
+          data-testid="share-btn"
+          src={ shareIcon }
+          alt="share recipe"
+        />
+      </button>
 
       <div>
         <h5>ingredients</h5>
