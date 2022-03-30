@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import getIngridientsAndMeasures from '../helpers/getIngridientsAndMeasures';
 import getVideoId from '../helpers/getEmbeddedVideo';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
+import {
+  isRecipeFavorite,
+  saveFavoriteRecipes,
+  removeRecipeFromFavorites,
+} from '../helpers/handleFavoriteRecipes';
 
 function RecipeDetails(props) {
   const { recipe } = props;
 
-  const [isFavorite, setFavorite] = useState(true);
+  const [isFavorite, setFavorite] = useState();
+
+  useEffect(() => {
+    setFavorite(isRecipeFavorite(recipe));
+  }, [recipe]);
+
+  useEffect(() => {
+    if (isFavorite === true) {
+      saveFavoriteRecipes(recipe);
+    }
+    if (isFavorite === false) {
+      removeRecipeFromFavorites(recipe);
+    }
+  }, [isFavorite, recipe]);
 
   const ingredientsWithMeasures = getIngridientsAndMeasures(recipe);
 
