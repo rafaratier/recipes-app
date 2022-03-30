@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import getIngridientsAndMeasures from '../helpers/getIngridientsAndMeasures';
 import getVideoId from '../helpers/getEmbeddedVideo';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
 
 function RecipeDetails(props) {
   const { recipe } = props;
 
+  const [isFavorite, setFavorite] = useState(true);
+
   const ingredientsWithMeasures = getIngridientsAndMeasures(recipe);
 
   const YOUTUBE_VIDEO_ID = getVideoId(recipe.strYoutube);
+
+  const isFavoriteIconStyle = {
+    background: `url(${blackHeartIcon}) no-repeat`,
+    width: '30px',
+    height: '30px',
+  };
+
+  const notFavoriteIconStyle = {
+    background: `url(${whiteHeartIcon}) no-repeat`,
+    width: '30px',
+    height: '30px',
+  };
 
   return (
     <div>
@@ -21,6 +38,24 @@ function RecipeDetails(props) {
       <h3 data-testid="recipe-title">{ recipe.strMeal }</h3>
 
       <h4 data-testid="recipe-category">{ recipe.strCategory }</h4>
+
+      <button
+        data-testid="share-btn"
+        type="button"
+        style={ isFavorite ? isFavoriteIconStyle : notFavoriteIconStyle }
+        alt="favorite recipe"
+        onClick={ () => setFavorite((prevState) => !prevState) }
+      />
+
+      <button
+        data-testid="favorite-btn"
+        type="button"
+        style={ { background: `url(${shareIcon})`,
+          width: '30px',
+          height: '30px',
+          backgroundRepeat: 'norepeat' } }
+        alt="share"
+      />
 
       <div>
         <h5>ingredients</h5>

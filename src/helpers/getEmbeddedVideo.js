@@ -9,3 +9,6 @@ function getVideoId(youTubeVideoUrl) {
 }
 
 export default getVideoId;
+
+// referencia de função para extrair ID de URL de video do youtube
+// https://stackoverflow.com/questions/21607808/convert-a-youtube-video-url-to-embed-code
