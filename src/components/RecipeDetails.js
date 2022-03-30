@@ -17,8 +17,8 @@ function RecipeDetails(props) {
 
   const isFavoriteIconStyle = {
     background: `url(${blackHeartIcon}) no-repeat`,
-    width: '30px',
-    height: '30px',
+    width: '33px',
+    height: '33px',
   };
 
   const notFavoriteIconStyle = {
