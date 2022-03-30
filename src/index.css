@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@media (max-width: 640px) {
+  .header-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #E5E5E5;
+  }
+  .header-content button {
+    border: none;
+    background-color: #E5E5E5;
+  }
+  .searchInput-container {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+  .recipe-card {
+    display: flex;
+    align-items: center;
+  }
+  .recipe-card img{
+    margin: 5px;
+    width: 25vh;
+  }
+}
