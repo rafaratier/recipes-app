@@ -27,3 +27,18 @@
   top: 0;
   width: 100%;
 }
+
+.recipe-details-img-container {
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+  width: 100%;
+}
+
+.recipe-details-img-container img {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

@@ -35,11 +35,13 @@ function RecipeDetails(props) {
 
   return (
     <div>
-      <img
-        src={ recipe.strMealThumb }
-        alt={ recipe.strMeal }
-        data-testid="recipe-photo"
-      />
+      <div className="recipe-details-img-container">
+        <img
+          src={ recipe.strMealThumb }
+          alt={ recipe.strMeal }
+          data-testid="recipe-photo"
+        />
+      </div>
 
       <h3 data-testid="recipe-title">{ recipe.strMeal }</h3>
 
