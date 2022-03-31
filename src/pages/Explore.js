@@ -8,7 +8,7 @@ function Explore() {
 
   return (
     <div>
-      <h2>pagina de explorar</h2>
+      <h1 className="explore-title">Explore Recipes</h1>
 
       <div className="container-explorer">
         <button

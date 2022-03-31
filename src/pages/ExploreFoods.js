@@ -1,13 +1,21 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import FooterMenu from '../components/FooterMenu';
+import { getRandomFoodRecipeDetails } from '../helpers/fetchFoodRecipes';
 
 function ExploreFoods() {
   const history = useHistory();
 
+  const handleClick = async () => {
+    const response = await getRandomFoodRecipeDetails();
+    const { idMeal } = response.meals[0];
+    console.log(idMeal);
+    history.push(`/foods/${idMeal}`);
+  };
+
   return (
     <div>
-      <h1>pagina de explorar comida</h1>
+      <h1>Explore Foods</h1>
 
       <div>
         <button
@@ -29,7 +37,7 @@ function ExploreFoods() {
         <button
           type="submit"
           data-testid="explore-surprise"
-          onClick={ () => history.push('/explore/foods') }
+          onClick={ handleClick }
         >
           Surprise me!
 

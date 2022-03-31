@@ -15,3 +15,9 @@ export const getFoodCategories = async () => {
   const result = await request.json();
   return result;
 };
+
+export const getRandomFoodRecipeDetails = async () => {
+  const request = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+  const result = await request.json();
+  return result;
+};
