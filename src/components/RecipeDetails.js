@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import copy from 'clipboard-copy';
 import getIngridientsAndMeasures from '../helpers/getIngridientsAndMeasures';
 import getVideoId from '../helpers/getEmbeddedVideo';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -16,6 +17,8 @@ function RecipeDetails(props) {
 
   const [isFavorite, setFavorite] = useState();
 
+  const [isLinkCopied, copyLink] = useState(false);
+
   useEffect(() => {
     setFavorite(isRecipeFavorite(recipe));
   }, [recipe]);
@@ -28,6 +31,11 @@ function RecipeDetails(props) {
       removeRecipeFromFavorites(recipe);
     }
   }, [isFavorite, recipe]);
+
+  const handleShareClick = () => {
+    copy(window.location.href);
+    copyLink((prevState) => !prevState);
+  };
 
   const ingredientsWithMeasures = getIngridientsAndMeasures(recipe);
 
@@ -62,12 +70,13 @@ function RecipeDetails(props) {
       <button
         type="button"
         alt="share"
+        onClick={ handleShareClick }
       >
-        <img
+        { isLinkCopied ? 'Link copied!' : <img
           data-testid="share-btn"
           src={ shareIcon }
           alt="share recipe"
-        />
+        />}
       </button>
 
       <div>
