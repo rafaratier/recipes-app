@@ -19,8 +19,14 @@ function RecipeDetails(props) {
 
   const [isLinkCopied, copyLink] = useState(false);
 
+  const [videoId, setVideoId] = useState();
+
   useEffect(() => {
     setFavorite(isRecipeFavorite(recipe));
+
+    if (recipe.strYoutube) {
+      setVideoId(getVideoId(recipe.strYoutube));
+    }
   }, [recipe]);
 
   useEffect(() => {
@@ -39,21 +45,21 @@ function RecipeDetails(props) {
 
   const ingredientsWithMeasures = getIngridientsAndMeasures(recipe);
 
-  const YOUTUBE_VIDEO_ID = getVideoId(recipe.strYoutube);
+  // const YOUTUBE_VIDEO_ID = getVideoId(recipe.strYoutube);
 
   return (
     <div>
       <div className="recipe-details-img-container">
         <img
-          src={ recipe.strMealThumb }
-          alt={ recipe.strMeal }
+          src={ recipe.strMealThumb || recipe.strDrinkThumb }
+          alt={ recipe.strMeal || recipe.strDrink }
           data-testid="recipe-photo"
         />
       </div>
 
-      <h3 data-testid="recipe-title">{ recipe.strMeal }</h3>
+      <h3 data-testid="recipe-title">{ recipe.strMeal || recipe.strDrink }</h3>
 
-      <h4 data-testid="recipe-category">{ recipe.strCategory }</h4>
+      <h4 data-testid="recipe-category">{ recipe.strAlcoholic || recipe.strCategory}</h4>
 
       <button
         type="button"
@@ -97,17 +103,19 @@ function RecipeDetails(props) {
         <p data-testid="instructions">{recipe.strInstructions}</p>
       </div>
 
-      <div className="iframe-container">
-        <iframe
-          data-testid="video"
-          title={ recipe.strMeal }
-          width="560"
-          height="315"
-          src={ `//www.youtube.com/embed/${YOUTUBE_VIDEO_ID}` }
-          frameBorder="0"
-          allowFullScreen
-        />
-      </div>
+      { videoId && videoId.length > 0
+        ? (
+          <div className="iframe-container">
+            <iframe
+              data-testid="video"
+              title={ recipe.strMeal || recipe.strDrink }
+              width="560"
+              height="315"
+              src={ `//www.youtube.com/embed/${videoId}` }
+              frameBorder="0"
+              allowFullScreen
+            />
+          </div>) : ''}
 
     </div>
   );

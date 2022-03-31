@@ -16,7 +16,7 @@ export const getFoodCategories = async () => {
   return result;
 };
 
-export const getRecipe = async (recipeId) => {
+export const getFoodRecipe = async (recipeId) => {
   const request = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`);
   const result = await request.json();
   return result;

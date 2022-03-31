@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getRecipe } from '../helpers/fetchFoodRecipes';
+import { getFoodRecipe } from '../helpers/fetchFoodRecipes';
 import RecipeDetails from './RecipeDetails';
 
 function FoodDetails() {
@@ -10,13 +10,11 @@ function FoodDetails() {
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      const result = await getRecipe(id);
+      const result = await getFoodRecipe(id);
       setRecipe(result.meals);
     };
     fetchRecipe();
   }, [id]);
-
-  console.log(recipe);
 
   return (
     <div>

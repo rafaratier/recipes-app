@@ -4,7 +4,7 @@ export function saveFavoriteRecipes(selectedRecipe) {
     type: selectedRecipe.idMeal ? 'food' : 'drink',
     nationality: selectedRecipe.strArea ? selectedRecipe.strArea : '',
     category: selectedRecipe.strCategory ? selectedRecipe.strCategory : '',
-    alcoholicOrNot: selectedRecipe.strAlcoholic ? selectedRecipe.Alcoholic : '',
+    alcoholicOrNot: selectedRecipe.strAlcoholic ? selectedRecipe.strAlcoholic : '',
     name: selectedRecipe.strMeal ? selectedRecipe.strMeal : selectedRecipe.strDrink,
     image: selectedRecipe.strMealThumb
       ? selectedRecipe.strMealThumb : selectedRecipe.strDrinkThumb,
@@ -38,10 +38,12 @@ export function isRecipeFavorite(selectedRecipe) {
 export function removeRecipeFromFavorites(selectedRecipe) {
   const savedRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
-  if (savedRecipes !== null) {
-    const newSavedRecipesArr = savedRecipes
-      .filter((recipe) => recipe.id !== selectedRecipe.idMeal || selectedRecipe.idDrink);
+  let newSavedRecipesArr = [];
 
-    localStorage.setItem('favoriteRecipes', JSON.stringify(newSavedRecipesArr));
+  if (savedRecipes !== null) {
+    newSavedRecipesArr = savedRecipes
+      .filter((recipe) => recipe.id !== selectedRecipe.idMeal || selectedRecipe.idDrink);
   }
+
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newSavedRecipesArr));
 }
