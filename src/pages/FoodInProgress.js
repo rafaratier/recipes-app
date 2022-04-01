@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import RecipeContext from '../context/RecipeContext';
 import { getRecipeFromId } from '../helpers/fetchFoodRecipes';
-import INITIAL_DATA from '../helpers/emptyObj';
 
 function FoodInProgress() {
+  const { INITIAL_DATA, INITIAL_CHECKBOX } = useContext(RecipeContext);
   const [recipe, setRecipe] = useState(INITIAL_DATA);
+  const [checkboxes, setCheckboxes] = useState(INITIAL_CHECKBOX);
+  const [finishIsAble, setFinishIsAble] = useState(true);
+  const [checkCount, setCheckCount] = useState(1);
   const { id } = useParams();
-
-  useEffect(() => {
-    const getRecipes = async () => {
-      let recipesArray = [];
-      recipesArray = await getRecipeFromId(id);
-      setRecipe(recipesArray);
-    };
-    getRecipes();
-  }, []);
-
+  const recipeInStorage = localStorage.getItem('inProgressRecipes');
+  const objRecipeInStorage = JSON.parse(recipeInStorage);
+  const ingredientsInUse = [];
   const ingredients = [
-    '',
     recipe.meals[0].strIngredient1,
     recipe.meals[0].strIngredient2,
     recipe.meals[0].strIngredient3,
@@ -39,8 +35,8 @@ function FoodInProgress() {
     recipe.meals[0].strIngredient19,
     recipe.meals[0].strIngredient20,
   ];
+
   const measure = [
-    '',
     recipe.meals[0].strMeasure1,
     recipe.meals[0].strMeasure2,
     recipe.meals[0].strMeasure3,
@@ -62,6 +58,55 @@ function FoodInProgress() {
     recipe.meals[0].strMeasure19,
     recipe.meals[0].strMeasure20,
   ];
+
+  useEffect(() => {
+    const getRecipes = async () => {
+      let recipesArray = [];
+      recipesArray = await getRecipeFromId(id);
+      setRecipe(recipesArray);
+      setFinishIsAble(true);
+    };
+    getRecipes();
+  }, [id]);
+
+  const onAddingIngredient = (index) => {
+    const howManyCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+    const checkIngredients = checkboxes;
+    const newObj = {
+      cocktails: {},
+      meals: {},
+    };
+
+    const recipeInStorage2 = localStorage.getItem('inProgressRecipes');
+    const objRecipeInStorage2 = JSON.parse(recipeInStorage2);
+    localStorage.setItem('teste', 'testando');
+
+    ingredientsInUse.push(ingredients[index]);
+    console.log(objRecipeInStorage);
+    if (objRecipeInStorage === null) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify(newObj));
+    } else {
+      console.log(objRecipeInStorage2);
+      console.log(ingredientsInUse);
+    }
+    console.log(checkIngredients[index]);
+    checkIngredients[index] = !checkIngredients[index];
+    console.log(checkIngredients[index]);
+    setCheckboxes(checkIngredients);
+    if (checkIngredients[index]) {
+      setCheckCount(checkCount + 1);
+      if (checkCount === howManyCheckboxes.length) {
+        setFinishIsAble(false);
+      }
+    } else {
+      setCheckCount(checkCount - 1);
+      if (checkCount !== howManyCheckboxes.length) {
+        setFinishIsAble(true);
+      }
+    }
+    console.log(checkCount);
+    console.log(howManyCheckboxes.length);
+  };
 
   return (
     <div className="in-progress-page">
@@ -88,27 +133,49 @@ function FoodInProgress() {
       >
         { `Categoria: ${recipe.meals[0].strCategory}` }
       </h5>
-      <div>
-        {ingredients.map((ingredient, index) => {
-          if (ingredient) {
-            return (
-              <p data-testid={ `${index}-ingredient-step` }>
-                { `${ingredient} - ${measure[index]}` }
-              </p>
-            );
-          }
-          return false;
-        })}
-      </div>
-      <p data-testid="instructions">
-        {recipe.meals[0].strInstructions}
-      </p>
+      <table>
+        <tbody>
+          { ingredients.map((ingredient, index) => {
+            if (ingredient) {
+              return (
+                <tr key={ index + 1 }>
+                  <td>{index + 1}</td>
+                  <td>
+                    <div className="ingredients-with-checkbox">
+                      <label
+                        className="checkbox-checked"
+                        htmlFor={ ingredient }
+                        data-testid={ `${index}-ingredient-step` }
+                      >
+                        <input
+                          type="checkbox"
+                          value={ ingredient }
+                          className={ ingredient }
+                          onChange={ () => onAddingIngredient(index) }
+                          // checked={ objRecipeInStorage.meals[id].some(ingredient) }
+                        />
+                        { `${ingredient} - ${measure[index]}` }
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+              );
+            }
+            return false;
+          })}
+
+        </tbody>
+      </table>
       <button
         type="button"
         data-testid="finish-recipe-btn"
+        disabled={ finishIsAble }
       >
         Finalizar Receita
       </button>
+      <p data-testid="instructions">
+        {recipe.meals[0].strInstructions}
+      </p>
     </div>
   );
 }

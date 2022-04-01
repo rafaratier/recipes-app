@@ -22,3 +22,7 @@
   height: 390px;
   width: 315px;
 }
+
+input[type=checkbox]:checked + label {
+  text-decoration: line-through;
+}
