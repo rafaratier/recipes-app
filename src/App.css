@@ -42,3 +42,16 @@
   top: 0;
   width: 100%;
 }
+
+.suggestions-container {
+  display: flex;
+  height: fit-content;
+  overflow: scroll;
+  width: 360px;
+}
+
+.suggestions-container .recipe-card {
+  border: 1px solid red;
+  margin: 25px;
+  padding: 10px;
+}

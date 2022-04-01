@@ -3,14 +3,14 @@ import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function RecipeCard(props) {
-  const { recipeThumbnail, recipeName, index, recipeId } = props;
+  const { recipeThumbnail, recipeName, index, recipeId, cardType } = props;
   const history = useHistory();
   const location = useLocation();
 
   return (
     <div
       className="recipe-card"
-      data-testid={ `${index}-recipe-card` }
+      data-testid={ `${index}-${cardType}-card` }
       role="button"
       tabIndex={ 0 }
       onClick={ () => history.push(`${location.pathname}/${recipeId}`) }
@@ -22,7 +22,8 @@ function RecipeCard(props) {
         data-testid={ `${index}-card-img` }
       />
       <p
-        data-testid={ `${index}-card-name` }
+        data-testid={ cardType === 'recipe'
+          ? `${index}-${cardType}-name` : `${index}-${cardType}-title` }
       >
         {recipeName}
 
@@ -36,6 +37,7 @@ RecipeCard.propTypes = {
   recipeName: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   recipeId: PropTypes.string.isRequired,
+  cardType: PropTypes.string.isRequired,
 };
 
 export default RecipeCard;

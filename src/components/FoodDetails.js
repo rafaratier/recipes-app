@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFoodRecipe } from '../helpers/fetchFoodRecipes';
 import RecipeDetails from './RecipeDetails';
+import Recommendations from './Recommendations';
 
 function FoodDetails() {
   const { id } = useParams();
@@ -25,6 +26,9 @@ function FoodDetails() {
           recipe={ mealObj }
         />
       ))}
+
+      <Recommendations suggestionType="drink" />
+
     </div>
   );
 }
