@@ -18,6 +18,7 @@ function FoodRecipesShowCase(props) {
               recipeThumbnail={ recipe.strMealThumb }
               recipeName={ recipe.strMeal }
               cardType="recipe"
+              recipeType="foods"
             />
           );
         }

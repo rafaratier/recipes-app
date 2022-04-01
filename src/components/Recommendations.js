@@ -38,6 +38,7 @@ function Recommendations(props) {
               recipeId={ recipe.idMeal || recipe.idDrink }
               recipeThumbnail={ recipe.strMealThumb || recipe.strDrinkThumb }
               recipeName={ recipe.strMeal || recipe.strDrink }
+              recipeType={ recipe.strMeal ? 'foods' : 'drinks' }
             />
           );
         }

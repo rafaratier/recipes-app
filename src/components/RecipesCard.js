@@ -1,20 +1,19 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function RecipeCard(props) {
-  const { recipeThumbnail, recipeName, index, recipeId, cardType } = props;
-  const history = useHistory();
-  const location = useLocation();
+function RecipesCard(props) {
+  const { recipeThumbnail, recipeName, index, recipeId, cardType, recipeType } = props;
+
+  const { pathname } = useLocation();
 
   return (
-    <div
+    <Link
       className="recipe-card"
       data-testid={ `${index}-${cardType}-card` }
-      role="button"
       tabIndex={ 0 }
-      onClick={ () => history.push(`${location.pathname}/${recipeId}`) }
-      onKeyPress={ () => history.push(`${location.pathname}/${recipeId}`) }
+      to={ cardType !== 'recomendation'
+        ? `${pathname}/${recipeId}` : `/${recipeType}/${recipeId}` }
     >
       <img
         src={ recipeThumbnail }
@@ -28,16 +27,17 @@ function RecipeCard(props) {
         {recipeName}
 
       </p>
-    </div>
+    </Link>
   );
 }
 
-RecipeCard.propTypes = {
+RecipesCard.propTypes = {
   recipeThumbnail: PropTypes.string.isRequired,
   recipeName: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   recipeId: PropTypes.string.isRequired,
   cardType: PropTypes.string.isRequired,
+  recipeType: PropTypes.string.isRequired,
 };
 
-export default RecipeCard;
+export default RecipesCard;
