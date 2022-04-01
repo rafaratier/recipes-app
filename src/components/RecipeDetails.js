@@ -45,8 +45,6 @@ function RecipeDetails(props) {
 
   const ingredientsWithMeasures = getIngridientsAndMeasures(recipe);
 
-  // const YOUTUBE_VIDEO_ID = getVideoId(recipe.strYoutube);
-
   return (
     <div>
       <div className="recipe-details-img-container">

@@ -40,10 +40,14 @@ export function removeRecipeFromFavorites(selectedRecipe) {
 
   let newSavedRecipesArr = [];
 
-  if (savedRecipes !== null) {
+  if (savedRecipes !== null && selectedRecipe.idMeal) {
     newSavedRecipesArr = savedRecipes
-      .filter((recipe) => recipe.id !== selectedRecipe.idMeal || selectedRecipe.idDrink);
+      .filter((recipe) => recipe.id !== selectedRecipe.idMeal);
   }
 
+  if (savedRecipes !== null && selectedRecipe.idDrink) {
+    newSavedRecipesArr = savedRecipes
+      .filter((recipe) => recipe.id !== selectedRecipe.idDrink);
+  }
   localStorage.setItem('favoriteRecipes', JSON.stringify(newSavedRecipesArr));
 }
