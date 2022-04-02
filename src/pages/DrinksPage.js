@@ -48,7 +48,6 @@ function DrinksPage() {
       />
       <DrinksRecipesShowCase recipes={ recipes.drinks } />
     </div>
-
   );
 }
 
