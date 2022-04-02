@@ -9,6 +9,7 @@ function ExploreFoods() {
   const handleClick = async () => {
     const response = await getRandomFoodRecipeDetails();
     const { idMeal } = response.meals[0];
+    console.log(response.meals);
     console.log(idMeal);
     history.push(`/foods/${idMeal}`);
   };
