@@ -7,6 +7,7 @@ import {
 import CategoriesButtons from '../components/CategoriesButtons';
 import FoodRecipesShowCase from '../components/FoodRecipesShowCase';
 import FooterMenu from '../components/FooterMenu';
+import Header from '../components/Header';
 
 function FoodsPage() {
   const [foodCategories, setFoodCategories] = useState([]);
@@ -38,6 +39,7 @@ function FoodsPage() {
 
   return (
     <div>
+      <Header title="Foods" />
       <h1>FOODS PAGE</h1>
       <CategoriesButtons
         categories={ foodCategories }
