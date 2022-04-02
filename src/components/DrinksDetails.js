@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { getDrinkRecipe } from '../services/fetchDrinksRecipes';
 import Recommendations from './Recommendations';
 import RecipeImgAndDetails from './RecipeImgAndTitleDetails';
 import FavoriteAndShareButtons from './FavoriteAndShareButtons';
 import RecipeIngredients from './RecipeIngredients';
 import getDoneRecipes from '../helpers/getDoneRecipes';
-import { getDrinksInProggress } from '../helpers/getRecipesInProggress';
+import { getDrinksInProgress } from '../helpers/getRecipesInProgress';
 
 function DrinksDetails() {
   const { id } = useParams();
+
+  const history = useHistory();
 
   const [recipe, setRecipe] = useState();
 
   const [isDone, setDone] = useState();
 
-  const [inProggress, setInProggress] = useState();
+  const [inProgress, setInProgress] = useState();
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -29,7 +31,7 @@ function DrinksDetails() {
     if (recipe && recipe.length > 0) {
       setDone(getDoneRecipes(recipe[0].idDrink));
 
-      setInProggress(getDrinksInProggress(recipe[0].idDrink));
+      setInProgress(getDrinksInProgress(recipe[0].idDrink));
     }
   }, [recipe]);
 
@@ -56,8 +58,9 @@ function DrinksDetails() {
           className="start-recipe-btn"
           type="button"
           data-testid="start-recipe-btn"
+          onClick={ () => history.push(`${id}/in-progress`) }
         >
-          {inProggress ? 'Continue Recipe' : 'Start Recipe'}
+          {inProgress ? 'Continue Recipe' : 'Start Recipe'}
         </button>
       )}
 
