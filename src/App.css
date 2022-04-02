@@ -55,3 +55,8 @@
   margin: 25px;
   padding: 10px;
 }
+
+.start-recipe-btn {
+  bottom: 0;
+  position: fixed;
+}

@@ -3,7 +3,7 @@ import {
   getFoodCategories,
   getAllFoodRecipes,
   getRecipesFromCategory,
-} from '../helpers/fetchFoodRecipes';
+} from '../services/fetchFoodRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
 import FoodRecipesShowCase from '../components/FoodRecipesShowCase';
 import FooterMenu from '../components/FooterMenu';

@@ -10,11 +10,14 @@ export function saveFavoriteRecipes(selectedRecipe) {
       ? selectedRecipe.strMealThumb : selectedRecipe.strDrinkThumb,
   };
 
+  const objTeste = { cocktails: { 17222: [] }, meals: { 53060: [] } };
+
   const savedRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
   if (savedRecipes !== null) {
     const newSavedRecipesArr = savedRecipes.concat(recipe);
     localStorage.setItem('favoriteRecipes', JSON.stringify(newSavedRecipesArr));
+    localStorage.setItem('inProgressRecipes', JSON.stringify(objTeste));
   } else {
     localStorage.setItem('favoriteRecipes', JSON.stringify([recipe]));
   }

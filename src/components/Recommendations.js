@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getAllFoodRecipes } from '../helpers/fetchFoodRecipes';
-import { getAllDrinksRecipes } from '../helpers/fetchDrinksRecipes';
+import { getAllFoodRecipes } from '../services/fetchFoodRecipes';
+import { getAllDrinksRecipes } from '../services/fetchDrinksRecipes';
 import RecipesCard from './RecipesCard';
 
 function Recommendations(props) {

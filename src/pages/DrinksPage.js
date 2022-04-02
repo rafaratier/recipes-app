@@ -3,7 +3,7 @@ import {
   getAllDrinksRecipes,
   getDrinksCategories,
   getDrinksFromCategory,
-} from '../helpers/fetchDrinksRecipes';
+} from '../services/fetchDrinksRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
 import DrinksRecipesShowCase from '../components/DrinksRecipesShowCase';
 import FooterMenu from '../components/FooterMenu';
