@@ -11,12 +11,16 @@ function ExploreDrinksIngredients() {
   const getListDrinkIngredients = () => {
     getDrinkRecipeByIngredient()
       .then((response) => {
+        console.log(response);
         setListDrinkIngredients(response.drinks);
-        console.log(response.drinks[0]);
       });
   };
 
   useEffect(() => { getListDrinkIngredients(); }, []);
+
+  const handleClick = () => {
+
+  };
 
   return (
     <div>
@@ -32,7 +36,7 @@ function ExploreDrinksIngredients() {
             >
               <img
                 data-testid={ `${index}-card-img` }
-                src={ `www.themealdb.com/images/ingredients/${ingredient}.png` }
+                src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png` }
                 alt={ `imagem do ingrediente ${ingredient}` }
               />
               <p data-testid={ `${index}-card-name` }>{ingredient}</p>
