@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useRecipeContext } from '../context/RecipeProvider';
+import RecipeContext from '../context/RecipeContext';
 import FooterMenu from '../components/FooterMenu';
-// import RecipeContext from '../context/RecipeContext';
-import { getFoodRecipeByIngredient } from '../helpers/fetchFoodRecipes';
+import { getAllIngredients } from '../helpers/fetchFoodRecipes';
 
 function ExploreFoodsIngredients() {
-  const MAX_INGREDIENTS = 12; // deve mostrar apenas 12 ngredientes
-  // console.log(MAX_INGREDIENTS);
+  const { setIngredient } = useRecipeContext(RecipeContext);
   const [listFoodIngredients, setListFoodIngredients] = useState([]);
+
+  const MAX_INGREDIENTS = 12;
 
   // montar componente
   const getListFoodIngredients = () => {
-    getFoodRecipeByIngredient()
+    getAllIngredients()
       .then((response) => {
         setListFoodIngredients(response.meals);
-        console.log(response.meals[0].strIngredient);
       });
   };
 
@@ -24,12 +25,13 @@ function ExploreFoodsIngredients() {
     <div>
       <h1>Explore Foods By Ingredients</h1>
 
-      {/* o card terá um Link para redirecionar + map
-      redirecionar para pagina de comidas que tem o ingrediente
-      */}
       {listFoodIngredients.slice(0, MAX_INGREDIENTS)
-        .map(({ strIngredient: ingredient }, index) => (
-          <Link to="/foods" key={ index }>
+        .map(({ strIngredient: ingredientName }, index) => (
+          <Link
+            to="/foods"
+            key={ index }
+            onClick={ () => setIngredient(ingredientName) }
+          >
             <div
               className="explore-ingredients-container"
               data-testid={ `${index}-ingredient-card` }
@@ -37,11 +39,11 @@ function ExploreFoodsIngredients() {
               <img
                 data-testid={ `${index}-card-img` }
                 src={
-                  `https://www.themealdb.com/images/ingredients/${ingredient}-Small.png`
+                  `https://www.themealdb.com/images/ingredients/${ingredientName}-Small.png`
                 }
-                alt={ `imagem do ingrediente ${ingredient}` }
+                alt={ `imagem do ingrediente ${ingredientName}` }
               />
-              <p data-testid={ `${index}-card-name` }>{ingredient}</p>
+              <p data-testid={ `${index}-card-name` }>{ingredientName}</p>
             </div>
           </Link>
         ))}

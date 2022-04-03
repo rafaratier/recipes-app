@@ -1,45 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
+import { useRecipeContext } from '../context/RecipeProvider';
+import RecipeContext from '../context/RecipeContext';
 import FooterMenu from '../components/FooterMenu';
-import { getDrinkRecipeByIngredient } from '../helpers/fetchDrinksRecipes';
+import { getAllIngredients } from '../helpers/fetchDrinksRecipes';
 
 function ExploreDrinksIngredients() {
-  const MAX_INGREDIENTS = 12;
+  const { setIngredient } = useRecipeContext(RecipeContext);
   const [listDrinkIngredients, setListDrinkIngredients] = useState([]);
 
+  const MAX_INGREDIENTS = 12;
+
   const getListDrinkIngredients = () => {
-    getDrinkRecipeByIngredient()
+    getAllIngredients()
       .then((response) => {
-        console.log(response);
         setListDrinkIngredients(response.drinks);
       });
   };
 
   useEffect(() => { getListDrinkIngredients(); }, []);
 
-  const handleClick = () => {
-
-  };
-
   return (
     <div>
       <h1>Explore Drinks By Ingredients</h1>
 
-      {/* o card terá um Link para redirecionar + map */}
       {listDrinkIngredients.slice(0, MAX_INGREDIENTS)
-        .map(({ strDrink: ingredient }, index) => (
-          <Link key={ index } to="/drinks">
+        .map(({ strIngredient1: ingredientName }, index) => (
+          <Link
+            key={ index }
+            to="/drinks"
+            onClick={ () => setIngredient(ingredientName) }
+          >
             <div
               className="explore-ingredients-container"
               data-testid={ `${index}-ingredient-card` }
             >
               <img
                 data-testid={ `${index}-card-img` }
-                src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png` }
-                alt={ `imagem do ingrediente ${ingredient}` }
+                src={ `https://www.thecocktaildb.com/images/ingredients/${ingredientName}-Small.png` }
+                alt={ `imagem do ingrediente ${ingredientName}` }
               />
-              <p data-testid={ `${index}-card-name` }>{ingredient}</p>
+              <p data-testid={ `${index}-card-name` }>{ingredientName}</p>
             </div>
           </Link>
         ))}
