@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import RecipesCard from './RecipesCard';
 import RecipeContext from '../context/RecipeContext';
 
@@ -9,23 +10,38 @@ function DrinksRecipesShowCase(props) {
 
   const { searchRecipes } = useContext(RecipeContext);
 
-  return (
-    <div className="recipes-container">
-      {
-        searchRecipes.drinks.length > 0 ? searchRecipes.drinks.map((meal) => {
-          const { strDrinkThumb, strDrink, idDrink } = meal;
+  const renderSearchRecipes = (drinks) => {
+    if (!drinks) {
+      return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
+    if (drinks.length === 1) {
+      const adress = `/drinks/${drinks[0].idDrink}`;
+      return <Redirect to={ adress } />;
+    }
+    if (drinks.length > 1) {
+      return drinks.map((drink, index) => {
+        const { strDrinkThumb, strDrink, idDrink } = drink;
+        if (index <= RECIPES_LIMIT) {
           return (
             <RecipesCard
               key={ idDrink }
-              index={ idDrink }
+              index={ index }
               recipeThumbnail={ strDrinkThumb }
               recipeName={ strDrink }
               recipeId={ strDrink }
             />);
-        }) : alert('deu ruim')
-      }
+        }
+        return false;
+      });
+    }
+  };
 
-      {searchRecipes.drinks.length === 0 && recipes && recipes.map((recipe, index) => {
+  return (
+    <div className="recipes-container">
+
+      { renderSearchRecipes(searchRecipes.drinks) }
+
+      {!searchRecipes.meals && recipes.map((recipe, index) => {
         if (index <= RECIPES_LIMIT) {
           return (
             <RecipesCard

@@ -1,10 +1,11 @@
 import React from 'react';
 import FooterMenu from '../components/FooterMenu';
+import Header from '../components/Header';
 
 function ExploreDrinksIngredients() {
   return (
     <div>
-      <h1>pagina de explorar ingreditentes de bebida</h1>
+      <Header title="Explore Ingredients" />
       <FooterMenu />
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import RecipesCard from './RecipesCard';
 import RecipeContext from '../context/RecipeContext';
 
@@ -9,23 +10,36 @@ function FoodRecipesShowCase(props) {
 
   const { searchRecipes } = useContext(RecipeContext);
 
-  return (
-    <div className="recipes-container">
-      {
-        searchRecipes.meals && searchRecipes.meals.map((meal) => {
-          const { strMealThumb, strMeal, idMeal } = meal;
+  const renderSearchRecipes = (meals) => {
+    if (!meals) {
+      return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
+    if (meals.length === 1) {
+      const adress = `/foods/${meals[0].idMeal}`;
+      return <Redirect to={ adress } />;
+    }
+    if (meals.length > 1) {
+      return meals.map((meal, index) => {
+        const { strMealThumb, strMeal, idMeal } = meal;
+        if (index <= RECIPES_LIMIT) {
           return (
             <RecipesCard
               key={ idMeal }
-              index={ idMeal }
+              index={ index }
               recipeThumbnail={ strMealThumb }
               recipeName={ strMeal }
               recipeId={ strMeal }
             />);
-        })
-      }
+        }
+        return false;
+      });
+    }
+  };
+  return (
+    <div className="recipes-container">
+      { renderSearchRecipes(searchRecipes.meals) }
 
-      {searchRecipes.meals.length === 0 && recipes && recipes.map((recipe, index) => {
+      {!searchRecipes.meals && recipes.map((recipe, index) => {
         if (index <= RECIPES_LIMIT) {
           return (
             <RecipesCard

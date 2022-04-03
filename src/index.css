@@ -11,7 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-@media (max-width: 640px) {
+@media (max-width: 360px) {
   .header-content {
     display: flex;
     justify-content: space-around;
@@ -33,7 +33,13 @@ code {
     align-items: center;
   }
   .recipe-card img{
-    margin: 5px;
-    width: 25vh;
+    margin: 3px;
+    width: 18vh;
+  }
+  .categories-container {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: space-around;
   }
 }
