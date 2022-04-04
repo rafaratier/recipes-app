@@ -12,3 +12,51 @@
   height: 130px;
   width: 105px;
 }
+
+.iframe-container {
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+  width: 100%;
+}
+
+.iframe-container iframe {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.recipe-details-img-container {
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+  width: 100%;
+}
+
+.recipe-details-img-container img {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.suggestions-container {
+  display: flex;
+  height: fit-content;
+  overflow: scroll;
+  width: 360px;
+}
+
+.suggestions-container .recipe-card {
+  border: 1px solid red;
+  margin: 25px;
+  padding: 10px;
+}
+
+.start-recipe-btn {
+  bottom: 0;
+  position: fixed;
+}

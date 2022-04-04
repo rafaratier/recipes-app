@@ -50,6 +50,7 @@ function DrinksRecipesShowCase(props) {
               recipeId={ recipe.idDrink }
               recipeThumbnail={ recipe.strDrinkThumb }
               recipeName={ recipe.strDrink }
+              recipeType="drinks"
             />
           );
         }
