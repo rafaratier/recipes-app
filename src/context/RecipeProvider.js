@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
 
@@ -8,14 +8,36 @@ function RecipeProvider({ children }) {
     drinks: [],
   });
 
+  const [recipes, setRecipesMain] = useState([]);
+  const [ingredient, setIngredient] = useState('');
+
+  const value = {
+    recipes,
+    setRecipesMain,
+    ingredient,
+    setIngredient,
+    searchRecipes,
+    setRecipes,
+  };
+
   return (
     <RecipeContext.Provider
-      value={ { setRecipes, searchRecipes } }
+      value={ value }
     >
       {children}
     </RecipeContext.Provider>
   );
 }
+
+export const useRecipeContext = () => {
+  const context = useContext(RecipeContext);
+
+  if (context === 'undefined') {
+    throw new Error('useRecipeContext não existe');
+  }
+
+  return context;
+};
 
 RecipeProvider.propTypes = {
   children: PropTypes.node.isRequired,

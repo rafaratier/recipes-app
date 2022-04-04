@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useRecipeContext } from '../context/RecipeProvider';
+import RecipeContext from '../context/RecipeContext';
 import {
   getFoodCategories,
   getAllFoodRecipes,
   getRecipesFromCategory,
+  getFoodsByIngredient,
 } from '../services/fetchFoodRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
 import FoodRecipesShowCase from '../components/FoodRecipesShowCase';
@@ -10,6 +13,11 @@ import FooterMenu from '../components/FooterMenu';
 import Header from '../components/Header';
 
 function FoodsPage() {
+  const {
+    recipes,
+    setRecipesMain,
+    ingredient,
+  } = useRecipeContext(RecipeContext);
   const [foodCategories, setFoodCategories] = useState([]);
 
   useEffect(() => {
@@ -22,20 +30,21 @@ function FoodsPage() {
 
   const [selectedCategory, setCategory] = useState('all');
 
-  const [recipes, setRecipes] = useState([]);
-
   useEffect(() => {
     const getRecipes = async () => {
       let recipesArray = [];
-      if (selectedCategory === 'all') {
+
+      if (ingredient) {
+        recipesArray = await getFoodsByIngredient(ingredient);
+      } else if (selectedCategory === 'all') {
         recipesArray = await getAllFoodRecipes();
       } else {
         recipesArray = await getRecipesFromCategory(selectedCategory);
       }
-      setRecipes(recipesArray);
+      setRecipesMain(recipesArray);
     };
     getRecipes();
-  }, [selectedCategory]);
+  }, [selectedCategory, setRecipesMain, ingredient]);
 
   return (
     <div>

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useRecipeContext } from '../context/RecipeProvider';
+import RecipeContext from '../context/RecipeContext';
 import {
   getAllDrinksRecipes,
   getDrinksCategories,
   getDrinksFromCategory,
+  getDrinksByIngredient,
 } from '../services/fetchDrinksRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
 import DrinksRecipesShowCase from '../components/DrinksRecipesShowCase';
@@ -10,6 +13,11 @@ import FooterMenu from '../components/FooterMenu';
 import Header from '../components/Header';
 
 function DrinksPage() {
+  const {
+    recipes,
+    setRecipesMain,
+    ingredient,
+  } = useRecipeContext(RecipeContext);
   const [drinksCategories, setdrinksCategories] = useState([]);
 
   useEffect(() => {
@@ -22,20 +30,21 @@ function DrinksPage() {
 
   const [selectedCategory, setCategory] = useState('all');
 
-  const [recipes, setRecipes] = useState([]);
-
   useEffect(() => {
     const getRecipes = async () => {
       let recipesArray = [];
-      if (selectedCategory === 'all') {
+
+      if (ingredient) {
+        recipesArray = await getDrinksByIngredient(ingredient);
+      } else if (selectedCategory === 'all') {
         recipesArray = await getAllDrinksRecipes();
       } else {
         recipesArray = await getDrinksFromCategory(selectedCategory);
       }
-      setRecipes(recipesArray);
+      setRecipesMain(recipesArray);
     };
     getRecipes();
-  }, [selectedCategory]);
+  }, [selectedCategory, setRecipesMain, ingredient]);
 
   return (
     <div>
