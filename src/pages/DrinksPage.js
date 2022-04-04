@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRecipeContext } from '../context/RecipeProvider';
 import RecipeContext from '../context/RecipeContext';
-import {
-  getAllDrinksRecipes,
+import { getAllDrinksRecipes,
   getDrinksCategories,
   getDrinksFromCategory,
   getDrinksByIngredient,

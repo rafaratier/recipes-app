@@ -17,13 +17,12 @@ export const getDrinksCategories = async () => {
   return result;
 };
 
-<<<<<<< HEAD:src/services/fetchDrinksRecipes.js
 export const getDrinkRecipe = async (recipeId) => {
   const request = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${recipeId}`);
   const result = await request.json();
   return result;
 };
-=======
+
 export const getRandomDrinkRecipeDetails = async () => {
   const request = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
   const result = await request.json();
@@ -43,4 +42,3 @@ export const getDrinksByIngredient = async (ingredientName) => {
 
   return result;
 };
->>>>>>> da9fd4d9d35e12c32f02f08854e32153dd8c72b9:src/helpers/fetchDrinksRecipes.js
