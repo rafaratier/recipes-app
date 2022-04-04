@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { useRecipeContext } from '../context/RecipeProvider';
 import RecipeContext from '../context/RecipeContext';
 import FooterMenu from '../components/FooterMenu';
-import { getAllIngredients } from '../helpers/fetchFoodRecipes';
+import Header from '../components/Header';
+import { getAllIngredients } from '../services/fetchFoodRecipes';
 
 function ExploreFoodsIngredients() {
   const { setIngredient } = useRecipeContext(RecipeContext);
@@ -23,6 +24,7 @@ function ExploreFoodsIngredients() {
 
   return (
     <div>
+      <Header title="Explore Ingredients" />
       <h1>Explore Foods By Ingredients</h1>
 
       {listFoodIngredients.slice(0, MAX_INGREDIENTS)

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
@@ -61,6 +62,9 @@ function Header(props) {
       return setMeals(await fetchByName(state.searchInput));
     }
     if (state.searchFor === 'first letter') {
+      if (state.searchInput.length > 1) {
+        return global.alert('Your search must have only 1 (one) character');
+      }
       return setMeals(await fetchByFirstLetter(state.searchInput));
     }
   };
@@ -73,37 +77,56 @@ function Header(props) {
       return setDrinks(await fetchDrinkByName(state.searchInput));
     }
     if (state.searchFor === 'first letter') {
+      if (state.searchInput.length > 1) {
+        return global.alert('Your search must have only 1 (one) character');
+      }
       return setDrinks(await fetchDrinkByFirstLetter(state.searchInput));
     }
   };
+
+  const renderSearchButton = () => (
+    <button
+      type="button"
+      data-testid="search-top-btn"
+      onClick={ renderSearchInput }
+      src={ searchIcon }
+    >
+      <img
+        src={ searchIcon }
+        alt="searchIcon"
+      />
+    </button>
+  );
 
   return (
     <section>
       <header>
         <div className="header-content">
-          <button
-            type="button"
+          <Link
+            to="/profile"
             data-testid="profile-top-btn"
-            onClick={ () => console.log('profilepage') }
+            src={ profileIcon }
           >
             <img
               src={ profileIcon }
               alt="profileImage"
             />
-          </button>
+          </Link>
 
           <h1 data-testid="page-title">{title}</h1>
+          { title === 'Explore Nationalities' && renderSearchButton() }
 
-          <button
-            type="button"
-            data-testid="search-top-btn"
-            onClick={ renderSearchInput }
-          >
-            <img
-              src={ searchIcon }
-              alt="searchIcon"
-            />
-          </button>
+          { title === 'Foods' && renderSearchButton() }
+
+          { title === 'Drinks' && renderSearchButton() }
+
+          { title.includes('Explore') && !renderSearchButton() }
+
+          { title === 'Profile' && !renderSearchButton()}
+
+          { title === 'Done Recipes' && !renderSearchButton() }
+
+          { title === 'Favorite Recipes' && !renderSearchButton() }
         </div>
       </header>
       <div className="searchInput-container">

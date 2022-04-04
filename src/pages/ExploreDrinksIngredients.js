@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { useRecipeContext } from '../context/RecipeProvider';
 import RecipeContext from '../context/RecipeContext';
 import FooterMenu from '../components/FooterMenu';
-import { getAllIngredients } from '../helpers/fetchDrinksRecipes';
+import Header from '../components/Header';
+import { getAllIngredients } from '../services/fetchDrinksRecipes';
 
 function ExploreDrinksIngredients() {
   const { setIngredient } = useRecipeContext(RecipeContext);
@@ -22,6 +23,7 @@ function ExploreDrinksIngredients() {
 
   return (
     <div>
+      <Header title="Explore Ingredients" />
       <h1>Explore Drinks By Ingredients</h1>
 
       {listDrinkIngredients.slice(0, MAX_INGREDIENTS)

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import FooterMenu from '../components/FooterMenu';
-import { getRandomFoodRecipeDetails } from '../helpers/fetchFoodRecipes';
+import Header from '../components/Header';
+import { getRandomFoodRecipeDetails } from '../services/fetchFoodRecipes';
 
 function ExploreFoods() {
   const history = useHistory();
@@ -16,6 +17,7 @@ function ExploreFoods() {
 
   return (
     <div>
+      <Header title="Explore Foods" />
       <h1>Explore Foods</h1>
 
       <div>

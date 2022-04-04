@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import FooterMenu from '../components/FooterMenu';
+import Header from '../components/Header';
 import './Explore.css';
 
 function Explore() {
@@ -8,6 +9,7 @@ function Explore() {
 
   return (
     <div>
+      <Header title="Explore" />
       <h1 className="explore-title">Explore Recipes</h1>
 
       <div className="container-explorer">
