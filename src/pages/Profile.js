@@ -1,10 +1,11 @@
 import React from 'react';
 import FooterMenu from '../components/FooterMenu';
+import Header from '../components/Header';
 
 function Profile() {
   return (
     <div>
-      <h1>pagina de perfil</h1>
+      <Header title="Profile" />
       <FooterMenu />
     </div>
   );

@@ -1,10 +1,11 @@
 import React from 'react';
 import FooterMenu from '../components/FooterMenu';
+import Header from '../components/Header';
 
 function Nationalities() {
   return (
     <>
-      <h1>Not Found</h1>
+      <Header title="Explore Nationalities" />
 
       <FooterMenu />
     </>

@@ -2,13 +2,13 @@ import React from 'react';
 import FooterMenu from '../components/FooterMenu';
 import Header from '../components/Header';
 
-function Explore() {
+function DoneRecipes() {
   return (
     <div>
-      <Header title="Explore" />
+      <Header title="Done Recipes" />
       <FooterMenu />
     </div>
   );
 }
 
-export default Explore;
+export default DoneRecipes;

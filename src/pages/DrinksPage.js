@@ -40,7 +40,6 @@ function DrinksPage() {
     <div>
       <Header title="Drinks" />
 
-      <h1>DRINKS PAGE</h1>
       <CategoriesButtons
         categories={ drinksCategories }
         selectedCategory={ selectedCategory }
