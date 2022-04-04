@@ -37,12 +37,29 @@ function FoodRecipesShowCase(props) {
         return false;
       });
     }
+    return recipes.map((recipe, index) => {
+      if (index <= RECIPES_LIMIT) {
+        return (
+          <RecipesCard
+            key={ index }
+            index={ index }
+            recipeId={ recipe.idMeal }
+            recipeThumbnail={ recipe.strMealThumb }
+            recipeName={ recipe.strMeal }
+            cardType="recipe"
+            recipeType="foods"
+            searchType=""
+          />
+        );
+      }
+      return false;
+    });
   };
   return (
     <div className="recipes-container">
       { renderSearchRecipes(searchRecipes.meals) }
 
-      {!searchRecipes.meals.length && recipes.map((recipe, index) => {
+      {/* {!searchRecipes.meals.length && recipes.map((recipe, index) => {
         if (index <= RECIPES_LIMIT) {
           return (
             <RecipesCard
@@ -58,7 +75,7 @@ function FoodRecipesShowCase(props) {
           );
         }
         return false;
-      })}
+      })} */}
     </div>
   );
 }

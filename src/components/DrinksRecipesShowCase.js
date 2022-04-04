@@ -37,14 +37,31 @@ function DrinksRecipesShowCase(props) {
         return false;
       });
     }
+    return recipes.map((recipe, index) => {
+      if (index <= RECIPES_LIMIT) {
+        return (
+          <RecipesCard
+            key={ index }
+            index={ index }
+            recipeId={ recipe.idDrink }
+            recipeThumbnail={ recipe.strDrinkThumb }
+            recipeName={ recipe.strDrink }
+            recipeType="drinks"
+            cardType="recipe"
+            searchType="card"
+          />
+        );
+      }
+      return false;
+    });
   };
 
   return (
     <div className="recipes-container">
 
-      { renderSearchRecipes(searchRecipes.drinks) }
+      {renderSearchRecipes(searchRecipes.drinks)}
 
-      {!searchRecipes.drinks.length && recipes.map((recipe, index) => {
+      {/* {!searchRecipes.drinks.length && recipes.map((recipe, index) => {
         if (index <= RECIPES_LIMIT) {
           return (
             <RecipesCard
@@ -60,7 +77,7 @@ function DrinksRecipesShowCase(props) {
           );
         }
         return false;
-      })}
+      })} */}
     </div>
   );
 }
