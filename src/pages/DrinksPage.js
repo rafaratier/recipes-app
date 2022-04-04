@@ -3,9 +3,10 @@ import {
   getAllDrinksRecipes,
   getDrinksCategories,
   getDrinksFromCategory,
-} from '../helpers/fetchDrinksRecipes';
+} from '../services/fetchDrinksRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
 import DrinksRecipesShowCase from '../components/DrinksRecipesShowCase';
+import FooterMenu from '../components/FooterMenu';
 import Header from '../components/Header';
 
 function DrinksPage() {
@@ -47,6 +48,7 @@ function DrinksPage() {
         getSelectedCategory={ setCategory }
       />
       <DrinksRecipesShowCase recipes={ recipes.drinks } />
+      <FooterMenu />
     </div>
   );
 }

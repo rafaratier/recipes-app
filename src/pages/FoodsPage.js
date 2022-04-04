@@ -3,9 +3,10 @@ import {
   getFoodCategories,
   getAllFoodRecipes,
   getRecipesFromCategory,
-} from '../helpers/fetchFoodRecipes';
+} from '../services/fetchFoodRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
 import FoodRecipesShowCase from '../components/FoodRecipesShowCase';
+import FooterMenu from '../components/FooterMenu';
 import Header from '../components/Header';
 
 function FoodsPage() {
@@ -46,6 +47,7 @@ function FoodsPage() {
         getSelectedCategory={ setCategory }
       />
       <FoodRecipesShowCase recipes={ recipes.meals } />
+      <FooterMenu />
     </div>
   );
 }
