@@ -6,11 +6,11 @@ import {
   getAllFoodRecipes,
   getRecipesFromCategory,
   getFoodsByIngredient,
-} from '../helpers/fetchFoodRecipes';
+} from '../services/fetchFoodRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
 import FoodRecipesShowCase from '../components/FoodRecipesShowCase';
-import Header from '../components/Header';
 import FooterMenu from '../components/FooterMenu';
+import Header from '../components/Header';
 
 function FoodsPage() {
   const {

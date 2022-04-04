@@ -22,7 +22,7 @@ function DrinksRecipesShowCase(props) {
               recipeName={ strDrink }
               recipeId={ strDrink }
             />);
-        }) : alert('deu ruim')
+        }) : ''
       }
 
       {searchRecipes.drinks.length === 0 && recipes && recipes.map((recipe, index) => {
@@ -34,6 +34,7 @@ function DrinksRecipesShowCase(props) {
               recipeId={ recipe.idDrink }
               recipeThumbnail={ recipe.strDrinkThumb }
               recipeName={ recipe.strDrink }
+              recipeType="drinks"
             />
           );
         }

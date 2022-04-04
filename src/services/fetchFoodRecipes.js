@@ -16,6 +16,12 @@ export const getFoodCategories = async () => {
   return result;
 };
 
+export const getFoodRecipe = async (recipeId) => {
+  const request = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`);
+  const result = await request.json();
+  return result;
+};
+
 export const getRandomFoodRecipeDetails = async () => {
   const request = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
   const result = await request.json();

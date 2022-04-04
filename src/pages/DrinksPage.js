@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useRecipeContext } from '../context/RecipeProvider';
 import RecipeContext from '../context/RecipeContext';
-import {
-  getAllDrinksRecipes,
+import { getAllDrinksRecipes,
   getDrinksCategories,
   getDrinksFromCategory,
   getDrinksByIngredient,
-} from '../helpers/fetchDrinksRecipes';
+} from '../services/fetchDrinksRecipes';
 import CategoriesButtons from '../components/CategoriesButtons';
 import DrinksRecipesShowCase from '../components/DrinksRecipesShowCase';
-import Header from '../components/Header';
 import FooterMenu from '../components/FooterMenu';
+import Header from '../components/Header';
 
 function DrinksPage() {
   const {
@@ -59,7 +58,6 @@ function DrinksPage() {
       <DrinksRecipesShowCase recipes={ recipes.drinks } />
       <FooterMenu />
     </div>
-
   );
 }
 
