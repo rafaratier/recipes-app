@@ -29,6 +29,9 @@ function DrinksRecipesShowCase(props) {
               recipeThumbnail={ strDrinkThumb }
               recipeName={ strDrink }
               recipeId={ strDrink }
+              recipeType="drinks"
+              cardType="recipe"
+              searchType="card"
             />);
         }
         return false;
@@ -41,7 +44,7 @@ function DrinksRecipesShowCase(props) {
 
       { renderSearchRecipes(searchRecipes.drinks) }
 
-      {!searchRecipes.meals && recipes.map((recipe, index) => {
+      {!searchRecipes.drinks.length && recipes.map((recipe, index) => {
         if (index <= RECIPES_LIMIT) {
           return (
             <RecipesCard
@@ -51,6 +54,8 @@ function DrinksRecipesShowCase(props) {
               recipeThumbnail={ recipe.strDrinkThumb }
               recipeName={ recipe.strDrink }
               recipeType="drinks"
+              cardType="recipe"
+              searchType="card"
             />
           );
         }

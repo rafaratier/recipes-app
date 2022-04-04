@@ -29,6 +29,9 @@ function FoodRecipesShowCase(props) {
               recipeThumbnail={ strMealThumb }
               recipeName={ strMeal }
               recipeId={ strMeal }
+              cardType="recipe"
+              recipeType="foods"
+              searchType="card"
             />);
         }
         return false;
@@ -39,7 +42,7 @@ function FoodRecipesShowCase(props) {
     <div className="recipes-container">
       { renderSearchRecipes(searchRecipes.meals) }
 
-      {!searchRecipes.meals && recipes.map((recipe, index) => {
+      {!searchRecipes.meals.length && recipes.map((recipe, index) => {
         if (index <= RECIPES_LIMIT) {
           return (
             <RecipesCard
@@ -50,6 +53,7 @@ function FoodRecipesShowCase(props) {
               recipeName={ recipe.strMeal }
               cardType="recipe"
               recipeType="foods"
+              searchType=""
             />
           );
         }
