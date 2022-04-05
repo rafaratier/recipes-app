@@ -17,7 +17,7 @@ import FoodDetails from './components/FoodDetails';
 import DrinksDetails from './components/DrinksDetails';
 import FoodInProgress from './pages/FoodInProgress';
 import DrinkInProgress from './pages/DrinkInProgress';
-import Done from './pages/Done';
+import DoneRecipes from './pages/DoneRecipes';
 
 function App() {
   return (
@@ -58,7 +58,7 @@ function App() {
             path="/drinks/:id/in-progress"
             component={ () => <DrinkInProgress /> }
           />
-          <Route exact path="/done-recipes" component={ () => <Done /> } />
+          <Route exact path="/done-recipes" component={ () => <DoneRecipes /> } />
         </Switch>
       </div>
     </RecipeProvider>
