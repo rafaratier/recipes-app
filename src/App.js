@@ -18,6 +18,7 @@ import DrinksDetails from './components/DrinksDetails';
 import FoodInProgress from './pages/FoodInProgress';
 import DrinkInProgress from './pages/DrinkInProgress';
 import DoneRecipes from './pages/DoneRecipes';
+import FavoriteRecipes from './pages/FavoriteRecipes';
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
             component={ () => <DrinkInProgress /> }
           />
           <Route exact path="/done-recipes" component={ () => <DoneRecipes /> } />
+          <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
         </Switch>
       </div>
     </RecipeProvider>

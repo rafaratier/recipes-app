@@ -1,0 +1,13 @@
+.form-wrapper {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.login-form {
+  height: 100vh;
+  padding-top: 300px;
+}
