@@ -70,7 +70,7 @@ function DrinkInProgress() {
     } else {
       setFinishIsAble(true);
     }
-  }, []);
+  }, [id, ingredients.length, ingredientsInUse.length, processInStorage]);
 
   useEffect(() => {
     const objRecipeInStorage = processInStorage();
@@ -84,7 +84,7 @@ function DrinkInProgress() {
     } else {
       setFinishIsAble(true);
     }
-  }, [ingredientsInUse]);
+  }, [ingredientsInUse, id, processInStorage]);
 
   const onAddingIngredient = (index) => {
     const newObj = {

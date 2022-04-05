@@ -80,7 +80,7 @@ function FoodInProgress() {
     } else {
       setFinishIsAble(true);
     }
-  }, []);
+  }, [id, ingredientsInUse.length, processInStorage, recipe]);
 
   useEffect(() => {
     const objRecipeInStorage = processInStorage();
@@ -94,7 +94,7 @@ function FoodInProgress() {
     } else {
       setFinishIsAble(true);
     }
-  }, [ingredientsInUse]);
+  }, [ingredientsInUse, id, processInStorage]);
 
   const onAddingIngredient = (index) => {
     const newObj = {
