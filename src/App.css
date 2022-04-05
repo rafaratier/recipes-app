@@ -75,15 +75,24 @@ button img {
   width: 360px;
 }
 
+<<<<<<< HEAD
 .ingredient-checkbox:checked + label {
   text-decoration: line-through;
 }
 
 button {
+=======
+.input[ type = 'checkbox' ]:checked + label {
+  text-decoration: line-through;
+}
+
+.button {
+>>>>>>> main-group-6
   max-height: 70px;
   max-width: 70px;
 }
 
+<<<<<<< HEAD
 
 .done-card {
   border-style: double;
@@ -110,4 +119,9 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space=around;
+=======
+.button img {
+  max-height: 50px;
+  max-width: 50px;
+>>>>>>> main-group-6
 }

@@ -33,6 +33,7 @@ function Recommendations(props) {
           return (
             <RecipesCard
               cardType="recomendation"
+              searchType=""
               key={ index }
               index={ index }
               recipeId={ recipe.idMeal || recipe.idDrink }

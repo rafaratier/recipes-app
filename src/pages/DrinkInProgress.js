@@ -148,7 +148,7 @@ function DrinkInProgress() {
         alt={ `imagem de ${recipe.drinks[0].strDrink}` }
         data-testid="recipe-photo"
       />
-      <FavoriteAndShareButtons recipe={ recipe } />
+      <FavoriteAndShareButtons recipe={ recipe.drinks[0] } />
       <h5
         data-testid="recipe-category"
       >

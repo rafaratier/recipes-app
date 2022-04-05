@@ -155,12 +155,9 @@ function RecipeProvider({ children }) {
   };
 
   return (
-    <RecipeContext.Provider
-      value={ value }
-    >
+    <RecipeContext.Provider value={ value }>
       {children}
-    </RecipeContext.Provider>
-  );
+    </RecipeContext.Provider>);
 }
 
 export const useRecipeContext = () => {
