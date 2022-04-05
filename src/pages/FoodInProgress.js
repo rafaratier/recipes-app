@@ -146,7 +146,6 @@ function FoodInProgress() {
       doneRecipes.push(doneObj);
       localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
     }
-
     history.push('/done-recipes');
   };
 
