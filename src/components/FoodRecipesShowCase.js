@@ -58,24 +58,6 @@ function FoodRecipesShowCase(props) {
   return (
     <div className="recipes-container">
       { renderSearchRecipes(searchRecipes.meals) }
-
-      {/* {!searchRecipes.meals.length && recipes.map((recipe, index) => {
-        if (index <= RECIPES_LIMIT) {
-          return (
-            <RecipesCard
-              key={ index }
-              index={ index }
-              recipeId={ recipe.idMeal }
-              recipeThumbnail={ recipe.strMealThumb }
-              recipeName={ recipe.strMeal }
-              cardType="recipe"
-              recipeType="foods"
-              searchType=""
-            />
-          );
-        }
-        return false;
-      })} */}
     </div>
   );
 }

@@ -148,15 +148,15 @@ function RecipeProvider({ children }) {
     setIngredient,
     searchRecipes,
     setRecipes,
+    INITIAL_CHECKBOX,
+    INITIAL_DATA,
+    processInStorage,
+    INITIAL_DRINK_DATA,
   };
 
   return (
     <RecipeContext.Provider
-      value={ { value,
-        INITIAL_CHECKBOX,
-        INITIAL_DATA,
-        processInStorage,
-        INITIAL_DRINK_DATA } }
+      value={ value }
     >
       {children}
     </RecipeContext.Provider>

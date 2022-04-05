@@ -42,4 +42,27 @@ code {
     flex-flow: row wrap;
     justify-content: space-around;
   }
+
+  .btn-profile-container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+  }
+
+  .linkElement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #C4C4C4;
+    width: 329px;
+    height: 35px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+
+  .footer-menu-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #C4C4C4;
+  }
 }
