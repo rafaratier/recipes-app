@@ -3,9 +3,22 @@ import { useLocation, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function RecipesCard(props) {
-  const { recipeThumbnail, recipeName, index, recipeId, cardType, recipeType } = props;
+  const { recipeThumbnail, recipeName, index,
+    recipeId, cardType, recipeType, searchType } = props;
 
   const { pathname } = useLocation();
+
+  const createdDataTestId = () => {
+    if (searchType === 'card') {
+      return `${index}-${searchType}-name`;
+    }
+    if (cardType === 'recipe') {
+      return `${index}-${cardType}-name`;
+    }
+    if (cardType === 'recomendation') {
+      return `${index}-${cardType}-title`;
+    }
+  };
 
   return (
     <Link
@@ -21,8 +34,7 @@ function RecipesCard(props) {
         data-testid={ `${index}-card-img` }
       />
       <p
-        data-testid={ cardType === 'recipe'
-          ? `${index}-${cardType}-name` : `${index}-${cardType}-title` }
+        data-testid={ createdDataTestId() }
       >
         {recipeName}
 
@@ -38,6 +50,7 @@ RecipesCard.propTypes = {
   recipeId: PropTypes.string.isRequired,
   cardType: PropTypes.string.isRequired,
   recipeType: PropTypes.string.isRequired,
+  searchType: PropTypes.string.isRequired,
 };
 
 export default RecipesCard;

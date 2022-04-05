@@ -29,17 +29,37 @@ function FoodRecipesShowCase(props) {
               recipeThumbnail={ strMealThumb }
               recipeName={ strMeal }
               recipeId={ strMeal }
+              searchType="card"
+              recipeType="foods"
+              cardType="recipe"
             />);
         }
         return false;
       });
     }
+    return recipes.map((recipe, index) => {
+      if (index <= RECIPES_LIMIT) {
+        return (
+          <RecipesCard
+            key={ index }
+            index={ index }
+            recipeId={ recipe.idMeal }
+            recipeThumbnail={ recipe.strMealThumb }
+            recipeName={ recipe.strMeal }
+            recipeType="foods"
+            cardType="recipe"
+            searchType="card"
+          />
+        );
+      }
+      return false;
+    });
   };
   return (
     <div className="recipes-container">
       { renderSearchRecipes(searchRecipes.meals) }
 
-      {!searchRecipes.meals && recipes.map((recipe, index) => {
+      {/* {!searchRecipes.meals.length && recipes.map((recipe, index) => {
         if (index <= RECIPES_LIMIT) {
           return (
             <RecipesCard
@@ -50,11 +70,12 @@ function FoodRecipesShowCase(props) {
               recipeName={ recipe.strMeal }
               cardType="recipe"
               recipeType="foods"
+              searchType=""
             />
           );
         }
         return false;
-      })}
+      })} */}
     </div>
   );
 }
