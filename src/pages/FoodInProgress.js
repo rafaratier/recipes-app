@@ -119,6 +119,37 @@ function FoodInProgress() {
     }
   };
 
+  const doneRecipe = () => {
+    const dt = new Date().toLocaleDateString();
+    const objRecipeInStorage = processInStorage();
+    objRecipeInStorage.meals[id] = [];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(objRecipeInStorage));
+    const doneObj = {
+      id: recipe.meals[0].idMeal,
+      type: 'food',
+      nationality: recipe.meals[0].strArea,
+      category: recipe.meals[0].strCategory,
+      alcoholicOrNot: 'food',
+      name: recipe.meals[0].strMeal,
+      image: recipe.meals[0].strMealThumb,
+      doneDate: dt,
+      tags: recipe.meals[0].strTags.split(', '),
+    };
+
+    const doneInStorage = localStorage.getItem('doneRecipes');
+    let doneRecipes = JSON.parse(doneInStorage);
+
+    if (doneRecipes === null) {
+      doneRecipes = [doneObj];
+      localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+    } else {
+      doneRecipes.push(doneObj);
+      localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+    }
+
+    history.push('/done-recipes');
+  };
+
   return (
     <div className="in-progress-page">
       <h2 data-testid="recipe-title">{recipe.meals[0].strMeal}</h2>
@@ -151,6 +182,7 @@ function FoodInProgress() {
                           type="checkbox"
                           value={ ingredient }
                           className={ ingredient }
+                          data-testid={ `${index}-horizontal-share-btn` }
                           onChange={ () => onAddingIngredient(index) }
                           checked={ ingredientsInUse.some((e) => e === ingredient) }
                         />
@@ -170,7 +202,7 @@ function FoodInProgress() {
         type="button"
         data-testid="finish-recipe-btn"
         disabled={ finishIsAble }
-        onClick={ () => history.push('/done-recipes') }
+        onClick={ doneRecipe }
       >
         Finalizar Receita
       </button>
