@@ -112,7 +112,7 @@ function DrinkInProgress() {
   const doneRecipe = () => {
     const dt = new Date().toLocaleDateString();
     const objRecipeInStorage = processInStorage();
-    objRecipeInStorage.drinks[id] = [];
+    objRecipeInStorage.cocktails[id] = [];
     localStorage.setItem('inProgressRecipes', JSON.stringify(objRecipeInStorage));
     const doneObj = {
       id: recipe.drinks[0].idDrink,

@@ -4,6 +4,11 @@
   grid-template-rows: 150px;
 }
 
+button img {
+  max-height: 50px;
+  max-width: 50px;
+}
+
 .recipe-card {
   width: fit-content;
 }
@@ -70,25 +75,21 @@
   width: 360px;
 }
 
-input[type=checkbox]:checked + label {
+input[ type = "checkbox" ]:checked + label {
   text-decoration: line-through;
 }
 
 button {
-  max-width: 70px;
   max-height: 70px;
+  max-width: 70px;
 }
 
-button img {
-  max-width: 50px;
-  max-height: 50px;
-}
 
 .done-card {
-  width: 100vw;
   height: 25vh;
-  padding: 5px;
+  width: 100vw;
   border-style: double;
+  padding: 5px;
   display: flex;
   justify-content: space-around;
 }
@@ -100,13 +101,13 @@ button img {
 .tags-box {
   font-size: xx-small;
   padding: 2px;
+  background-color: rgb(200, 167, 231);
   border-color: black;
   border-style: ridge;
-  background-color: rgb(200, 167, 231);
 }
 
 .done-infos {
   display: flex;
-  justify-content: space=around;
   flex-direction: column;
+  justify-content: space=around;
 }
