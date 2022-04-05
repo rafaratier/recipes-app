@@ -171,7 +171,7 @@ function DrinkInProgress() {
                         <input
                           type="checkbox"
                           value={ ingredient }
-                          className={ ingredient }
+                          className="ingredient-checkbox"
                           onChange={ () => onAddingIngredient(index) }
                           checked={ ingredientsInUse.some((e) => e === ingredient) }
                         />

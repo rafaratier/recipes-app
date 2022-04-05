@@ -181,7 +181,7 @@ function FoodInProgress() {
                         <input
                           type="checkbox"
                           value={ ingredient }
-                          className={ ingredient }
+                          className="ingredient-checkbox"
                           data-testid={ `${index}-horizontal-share-btn` }
                           onChange={ () => onAddingIngredient(index) }
                           checked={ ingredientsInUse.some((e) => e === ingredient) }

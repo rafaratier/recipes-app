@@ -75,7 +75,7 @@ button img {
   width: 360px;
 }
 
-input[ type = "checkbox" ]:checked + label {
+.ingredient-checkbox:checked + label {
   text-decoration: line-through;
 }
 
@@ -86,12 +86,12 @@ button {
 
 
 .done-card {
-  height: 25vh;
-  width: 100vw;
   border-style: double;
-  padding: 5px;
   display: flex;
+  height: 25vh;
   justify-content: space-around;
+  padding: 5px;
+  width: 100vw;
 }
 
 .done-img {
@@ -99,11 +99,11 @@ button {
 }
 
 .tags-box {
-  font-size: xx-small;
-  padding: 2px;
   background-color: rgb(200, 167, 231);
   border-color: black;
   border-style: ridge;
+  font-size: xx-small;
+  padding: 2px;
 }
 
 .done-infos {
