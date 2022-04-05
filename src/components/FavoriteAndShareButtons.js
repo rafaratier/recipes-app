@@ -18,7 +18,9 @@ function FavoriteAndShareButtons(props) {
   const [isLinkCopied, copyLink] = useState(false);
 
   useEffect(() => {
-    setFavorite(isRecipeFavorite(recipe));
+    if (recipe.meals || recipe.drinks) {
+      setFavorite(isRecipeFavorite(recipe));
+    }
   }, [recipe]);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ function FavoriteAndShareButtons(props) {
   }, [isFavorite, recipe]);
 
   const handleShareClick = () => {
-    copy(window.location.href);
+    copy(window.location.href.replace('/in-progress', ''));
     copyLink((prevState) => !prevState);
   };
 

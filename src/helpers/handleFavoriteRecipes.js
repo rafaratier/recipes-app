@@ -10,14 +10,11 @@ export function saveFavoriteRecipes(selectedRecipe) {
       ? selectedRecipe.strMealThumb : selectedRecipe.strDrinkThumb,
   };
 
-  const objTeste = { cocktails: { 17222: [] }, meals: { 53060: [] } };
-
   const savedRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
   if (savedRecipes !== null) {
     const newSavedRecipesArr = savedRecipes.concat(recipe);
     localStorage.setItem('favoriteRecipes', JSON.stringify(newSavedRecipesArr));
-    localStorage.setItem('inProgressRecipes', JSON.stringify(objTeste));
   } else {
     localStorage.setItem('favoriteRecipes', JSON.stringify([recipe]));
   }
@@ -27,30 +24,32 @@ export function isRecipeFavorite(selectedRecipe) {
   const savedRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
   let isFavorite = false;
 
-  if (savedRecipes !== null) {
+  if (savedRecipes) {
     savedRecipes.forEach((recipe) => {
-      if (recipe.id === selectedRecipe.idMeal || selectedRecipe.idDrink) {
+      if (recipe.id === selectedRecipe.meals[0].idMeal) {
         isFavorite = true;
       }
     });
   }
-
   return isFavorite;
 }
 
 export function removeRecipeFromFavorites(selectedRecipe) {
   const savedRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
-  let newSavedRecipesArr = [];
+  // let newSavedRecipesArr = [];
 
   if (savedRecipes !== null && selectedRecipe.idMeal) {
-    newSavedRecipesArr = savedRecipes
+    const newSavedRecipesArr = savedRecipes
       .filter((recipe) => recipe.id !== selectedRecipe.idMeal);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newSavedRecipesArr));
+    return;
   }
 
   if (savedRecipes !== null && selectedRecipe.idDrink) {
-    newSavedRecipesArr = savedRecipes
+    const newSavedRecipesArr = savedRecipes
       .filter((recipe) => recipe.id !== selectedRecipe.idDrink);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newSavedRecipesArr));
   }
-  localStorage.setItem('favoriteRecipes', JSON.stringify(newSavedRecipesArr));
+  // localStorage.setItem('favoriteRecipes', JSON.stringify(newSavedRecipesArr));
 }
