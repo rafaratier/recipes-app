@@ -2,14 +2,13 @@ import React from 'react';
 import FooterMenu from '../components/FooterMenu';
 import Header from '../components/Header';
 
-function Nationalities() {
+function DoneRecipes() {
   return (
-    <>
-      <Header title="Explore Nationalities" />
-
+    <div>
+      <Header title="Done Recipes" />
       <FooterMenu />
-    </>
+    </div>
   );
 }
 
-export default Nationalities;
+export default DoneRecipes;

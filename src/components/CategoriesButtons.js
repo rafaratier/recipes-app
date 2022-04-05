@@ -16,7 +16,7 @@ function CategoriesButtons(props) {
   };
 
   return (
-    <div>
+    <div className="categories-container">
       <label htmlFor="category">
         All
         <input

@@ -1,4 +1,9 @@
 .footer-menu-container {
+  background-color: white;
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
   position: fixed;
+  width: 100%;
 }
