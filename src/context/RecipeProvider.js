@@ -148,19 +148,16 @@ function RecipeProvider({ children }) {
     setIngredient,
     searchRecipes,
     setRecipes,
+    INITIAL_CHECKBOX,
+    INITIAL_DATA,
+    processInStorage,
+    INITIAL_DRINK_DATA,
   };
 
   return (
-    <RecipeContext.Provider
-      value={ { value,
-        INITIAL_CHECKBOX,
-        INITIAL_DATA,
-        processInStorage,
-        INITIAL_DRINK_DATA } }
-    >
+    <RecipeContext.Provider value={ value }>
       {children}
-    </RecipeContext.Provider>
-  );
+    </RecipeContext.Provider>);
 }
 
 export const useRecipeContext = () => {
