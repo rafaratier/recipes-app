@@ -70,7 +70,7 @@ function FoodInProgress() {
 
   useEffect(() => {
     const objRecipeInStorage = processInStorage();
-    console.log(recipe);
+
     if (objRecipeInStorage !== null && objRecipeInStorage.meals[id] !== null) {
       setIngredientsInUse(objRecipeInStorage.meals[id]);
     }
@@ -127,7 +127,7 @@ function FoodInProgress() {
         alt={ `imagem de ${recipe.meals[0].strMeal}` }
         data-testid="recipe-photo"
       />
-      <FavoriteAndShareButtons recipe={ recipe } />
+      <FavoriteAndShareButtons recipe={ recipe.meals[0] } />
       <h5
         data-testid="recipe-category"
       >
