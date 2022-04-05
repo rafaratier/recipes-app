@@ -1,4 +1,4 @@
-export function savoToFavoritesRecipes(selectedRecipe) {
+export function saveToFavoritesRecipes(selectedRecipe) {
   const recipe = {
     id: selectedRecipe.idMeal || selectedRecipe.idDrink,
     type: selectedRecipe.idMeal ? 'food' : 'drink',
@@ -64,14 +64,14 @@ export function handleFavorites(recipe, recipeId) {
       }
       if (favRecipe.id !== recipeId) {
         console.log('entrou se não tiver a receita');
-        savoToFavoritesRecipes(recipe);
+        saveToFavoritesRecipes(recipe);
       }
     });
   }
 
   if (savedRecipes && savedRecipes.length === 0) {
     console.log('entrou array vazio');
-    savoToFavoritesRecipes(recipe);
+    saveToFavoritesRecipes(recipe);
   }
 
   if (savedRecipes === null) {

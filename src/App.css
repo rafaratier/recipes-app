@@ -70,16 +70,16 @@
   width: 360px;
 }
 
-input[type=checkbox]:checked + label {
+.input[ type = 'checkbox' ]:checked + label {
   text-decoration: line-through;
 }
 
-button {
-  max-width: 70px;
+.button {
   max-height: 70px;
+  max-width: 70px;
 }
 
-button img {
-  max-width: 50px;
+.button img {
   max-height: 50px;
+  max-width: 50px;
 }
