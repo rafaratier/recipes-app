@@ -63,6 +63,7 @@ function DrinkInProgress() {
     if (objRecipeInStorage !== null && objRecipeInStorage.cocktails[id] !== null) {
       setIngredientsInUse(objRecipeInStorage.cocktails[id]);
     }
+    
     const howManyCheckboxes = document.querySelectorAll('input[type="checkbox"]');
     if (ingredientsInUse.length === howManyCheckboxes.length) {
       setFinishIsAble(false);
