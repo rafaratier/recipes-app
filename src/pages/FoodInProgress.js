@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
 import { getRecipeFromId } from '../helpers/fetchFoodRecipes';
+import FavoriteAndShareButtons from '../components/FavoriteAndShareButtons';
 
 function FoodInProgress() {
-  const { INITIAL_DATA, INITIAL_CHECKBOX } = useContext(RecipeContext);
+  const history = useHistory();
+  const { INITIAL_DATA, processInStorage } = useContext(RecipeContext);
   const [recipe, setRecipe] = useState(INITIAL_DATA);
-  const [checkboxes, setCheckboxes] = useState(INITIAL_CHECKBOX);
   const [finishIsAble, setFinishIsAble] = useState(true);
-  const [checkCount, setCheckCount] = useState(1);
   const { id } = useParams();
-  const recipeInStorage = localStorage.getItem('inProgressRecipes');
-  const objRecipeInStorage = JSON.parse(recipeInStorage);
-  const ingredientsInUse = [];
+  const [ingredientsInUse, setIngredientsInUse] = useState([]);
   const ingredients = [
     recipe.meals[0].strIngredient1,
     recipe.meals[0].strIngredient2,
@@ -69,43 +68,55 @@ function FoodInProgress() {
     getRecipes();
   }, [id]);
 
-  const onAddingIngredient = (index) => {
+  useEffect(() => {
+    const objRecipeInStorage = processInStorage();
+    console.log(recipe);
+    if (objRecipeInStorage !== null && objRecipeInStorage.meals[id] !== null) {
+      setIngredientsInUse(objRecipeInStorage.meals[id]);
+    }
     const howManyCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-    const checkIngredients = checkboxes;
+    if (ingredientsInUse.length === howManyCheckboxes.length) {
+      setFinishIsAble(false);
+    } else {
+      setFinishIsAble(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    const objRecipeInStorage = processInStorage();
+    const howManyCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+    if (objRecipeInStorage !== null) {
+      objRecipeInStorage.meals[id] = ingredientsInUse;
+      localStorage.setItem('inProgressRecipes', JSON.stringify(objRecipeInStorage));
+    }
+    if (ingredientsInUse.length === howManyCheckboxes.length) {
+      setFinishIsAble(false);
+    } else {
+      setFinishIsAble(true);
+    }
+  }, [ingredientsInUse]);
+
+  const onAddingIngredient = (index) => {
     const newObj = {
       cocktails: {},
       meals: {},
     };
-
-    const recipeInStorage2 = localStorage.getItem('inProgressRecipes');
-    const objRecipeInStorage2 = JSON.parse(recipeInStorage2);
-    localStorage.setItem('teste', 'testando');
-
-    ingredientsInUse.push(ingredients[index]);
-    console.log(objRecipeInStorage);
+    const objRecipeInStorage = processInStorage();
     if (objRecipeInStorage === null) {
+      newObj.meals[id] = [ingredients[index]];
+      setIngredientsInUse(newObj.meals[id]);
       localStorage.setItem('inProgressRecipes', JSON.stringify(newObj));
-    } else {
-      console.log(objRecipeInStorage2);
-      console.log(ingredientsInUse);
-    }
-    console.log(checkIngredients[index]);
-    checkIngredients[index] = !checkIngredients[index];
-    console.log(checkIngredients[index]);
-    setCheckboxes(checkIngredients);
-    if (checkIngredients[index]) {
-      setCheckCount(checkCount + 1);
-      if (checkCount === howManyCheckboxes.length) {
-        setFinishIsAble(false);
+    } else if (objRecipeInStorage.meals[id]) {
+      if (ingredientsInUse.some((e) => e === ingredients[index])) {
+        setIngredientsInUse(ingredientsInUse.filter((n) => n !== ingredients[index]));
+      } else {
+        setIngredientsInUse([...ingredientsInUse, ingredients[index]]);
       }
     } else {
-      setCheckCount(checkCount - 1);
-      if (checkCount !== howManyCheckboxes.length) {
-        setFinishIsAble(true);
-      }
+      setIngredientsInUse([ingredients[index]]);
+      newObj.meals[id] = [ingredientsInUse];
+      localStorage.setItem('inProgressRecipes', JSON.stringify(newObj));
     }
-    console.log(checkCount);
-    console.log(howManyCheckboxes.length);
   };
 
   return (
@@ -116,18 +127,7 @@ function FoodInProgress() {
         alt={ `imagem de ${recipe.meals[0].strMeal}` }
         data-testid="recipe-photo"
       />
-      <button
-        type="button"
-        data-testid="favorite-btn"
-      >
-        Favoritar
-      </button>
-      <button
-        type="button"
-        data-testid="share-btn"
-      >
-        Compartilhar
-      </button>
+      <FavoriteAndShareButtons recipe={ recipe } />
       <h5
         data-testid="recipe-category"
       >
@@ -152,7 +152,7 @@ function FoodInProgress() {
                           value={ ingredient }
                           className={ ingredient }
                           onChange={ () => onAddingIngredient(index) }
-                          // checked={ objRecipeInStorage.meals[id].some(ingredient) }
+                          checked={ ingredientsInUse.some((e) => e === ingredient) }
                         />
                         { `${ingredient} - ${measure[index]}` }
                       </label>
@@ -170,6 +170,7 @@ function FoodInProgress() {
         type="button"
         data-testid="finish-recipe-btn"
         disabled={ finishIsAble }
+        onClick={ () => history.push('/done-recipes') }
       >
         Finalizar Receita
       </button>
