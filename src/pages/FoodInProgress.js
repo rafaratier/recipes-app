@@ -129,7 +129,7 @@ function FoodInProgress() {
       type: 'food',
       nationality: recipe.meals[0].strArea,
       category: recipe.meals[0].strCategory,
-      alcoholicOrNot: 'food',
+      alcoholicOrNot: '',
       name: recipe.meals[0].strMeal,
       image: recipe.meals[0].strMealThumb,
       doneDate: dt,

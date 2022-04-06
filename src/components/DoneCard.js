@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import copy from 'clipboard-copy';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import shareIcon from '../images/shareIcon.svg';
 
 function DoneCard(props) {
@@ -14,53 +15,64 @@ function DoneCard(props) {
     date,
     tags,
     index,
-    alcoholicOrnot,
+    alcoholicOrNot,
   } = props;
 
-  console.log(alcoholicOrnot);
+  const url = `${type}s/${id}`;
 
   const [isLinkCopied, copyLink] = useState(false);
   const n = nationality;
 
   const handleShareClick = () => {
-    const url = `${type}s/${id}`;
     copy(window.location.href.replace('done-recipes', url));
     copyLink((prevState) => !prevState);
   };
 
   return (
     <div className="done-card">
-      <img
+      <Link
+        to={ url }
         className="done-img"
-        src={ image }
-        alt="imagem"
-        data-testid={ `${index}-horizontal-image` }
-      />
+      >
+        <img
+          className="done-img"
+          src={ image }
+          alt="imagem"
+          data-testid={ `${index}-horizontal-image` }
+        />
+      </Link>
       <div className="done-infos">
-        { alcoholicOrnot !== undefined
-          ? <p data-testid={ `${index}-horizontal-top-text` }>{alcoholicOrnot}</p>
+        { alcoholicOrNot !== ''
+          ? <p data-testid={ `${index}-horizontal-top-text` }>{alcoholicOrNot}</p>
           : <p data-testid={ `${index}-horizontal-top-text` }>{`${n} - ${category}`}</p>}
-
-        <h3
-          data-testid={ `${index}-horizontal-name` }
+        <Link
+          to={ url }
         >
-          {recipe}
-        </h3>
+          <h3
+            data-testid={ `${index}-horizontal-name` }
+          >
+            {recipe}
+          </h3>
+        </Link>
         <p
           data-testid={ `${index}-horizontal-done-date` }
         >
           {date}
         </p>
-        { tags && tags.map((tag) => (
-          <span
-            key={ tag }
-            className="tags-box"
-            data-testid={ `${index}-${tag}-horizontal-tag` }
-          >
-            {tag}
-          </span>
-        ))}
 
+      </div>
+      <div className="tags-and-share">
+        <div className="tags">
+          { tags && tags.map((tag) => (
+            <span
+              key={ tag }
+              className="tags-box"
+              data-testid={ `${index}-${tag}-horizontal-tag` }
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
         <button
           type="button"
           alt="share"
@@ -72,6 +84,7 @@ function DoneCard(props) {
             alt="share recipe"
           />}
         </button>
+
       </div>
     </div>
   );
@@ -86,7 +99,7 @@ DoneCard.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   index: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
-  alcoholicOrnot: PropTypes.string.isRequired,
+  alcoholicOrNot: PropTypes.string.isRequired,
   nationality: PropTypes.string.isRequired,
 };
 
