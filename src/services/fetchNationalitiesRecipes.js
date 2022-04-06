@@ -5,9 +5,8 @@ export const getNationalities = async () => {
 };
 
 export const getRecipesByNationality = async (nationality) => {
-  const request = await fetch(
-    `www.themealdb.com/api/json/v1/1/filter.php?a=${nationality}`,
-  );
+  const request = await
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${nationality}`);
   const result = request.json();
   return result;
 };

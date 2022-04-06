@@ -7,12 +7,25 @@ function RecipesCard(props) {
 
   const { pathname } = useLocation();
 
+  const handleDataTestIds = (cardUseType) => {
+    if (cardUseType === 'recipe') {
+      return `${index}-${cardUseType}-name`;
+    }
+    if (cardUseType === 'recomendation') {
+      return `${index}-${cardUseType}-title`;
+    }
+    if (cardUseType === 'nationality') {
+      return `${index}-card-name`;
+    }
+  };
+
   return (
     <Link
       className="recipe-card"
-      data-testid={ `${index}-${cardType}-card` }
+      data-testid={ cardType === 'recipe'
+        ? `${index}-${cardType}-card` : `${index}-recipe-card` }
       tabIndex={ 0 }
-      to={ cardType !== 'recomendation'
+      to={ cardType !== 'recomendation' && cardType !== 'nationality'
         ? `${pathname}/${recipeId}` : `/${recipeType}/${recipeId}` }
     >
       <img
@@ -21,8 +34,7 @@ function RecipesCard(props) {
         data-testid={ `${index}-card-img` }
       />
       <p
-        data-testid={ cardType === 'recipe'
-          ? `${index}-${cardType}-name` : `${index}-${cardType}-title` }
+        data-testid={ handleDataTestIds(cardType) }
       >
         {recipeName}
 

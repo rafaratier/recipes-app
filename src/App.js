@@ -19,6 +19,7 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import MealsInProggress from './components/MealsInProgress';
 import DrinksInProggress from './components/DrinksInProgress';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -53,6 +54,11 @@ function App() {
           <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
           <Route exact path="/foods/:id/in-progress" component={ MealsInProggress } />
           <Route exact path="/drinks/:id/in-progress" component={ DrinksInProggress } />
+          <Route
+            exact
+            path="/explore/drinks/nationalities"
+            component={ NotFound }
+          />
         </Switch>
       </div>
     </RecipeProvider>
