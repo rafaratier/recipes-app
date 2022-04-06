@@ -3,7 +3,8 @@ import { useLocation, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function RecipesCard(props) {
-  const { recipeThumbnail, recipeName, index, recipeId, cardType, recipeType } = props;
+  const { recipeThumbnail, recipeName, index,
+    recipeId, cardType, recipeType, searchType } = props;
 
   const { pathname } = useLocation();
 
@@ -50,6 +51,7 @@ RecipesCard.propTypes = {
   recipeId: PropTypes.string.isRequired,
   cardType: PropTypes.string.isRequired,
   recipeType: PropTypes.string.isRequired,
+  searchType: PropTypes.string.isRequired,
 };
 
 export default RecipesCard;

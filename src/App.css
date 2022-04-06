@@ -60,3 +60,26 @@
   bottom: 0;
   position: fixed;
 }
+
+.in-progress-page {
+  width: fit-content;
+}
+
+.in-progress-page img {
+  height: 445px;
+  width: 360px;
+}
+
+.input[ type = 'checkbox' ]:checked + label {
+  text-decoration: line-through;
+}
+
+.button {
+  max-height: 70px;
+  max-width: 70px;
+}
+
+.button img {
+  max-height: 50px;
+  max-width: 50px;
+}
