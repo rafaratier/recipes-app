@@ -1,6 +1,5 @@
 import React from 'react';
 import DoneCard from '../components/DoneCard';
-import FooterMenu from '../components/FooterMenu';
 import Header from '../components/Header';
 
 function DoneRecipes() {
@@ -37,8 +36,6 @@ function DoneRecipes() {
             alcoholicOrnot={ done.alcoholicOrnot }
           />
         )) }
-
-      <FooterMenu />
     </div>
   );
 }

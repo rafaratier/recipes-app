@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import FooterMenu from '../components/FooterMenu';
 import Header from '../components/Header';
 
 function Profile() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const [user, setUser] = useState('');
+  useEffect(() => {
+    const email = JSON.parse(localStorage.getItem('user'));
+    if (email) {
+      setUser(email);
+    }
+  }, []);
 
   return (
     <>

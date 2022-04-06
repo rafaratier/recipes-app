@@ -13,11 +13,6 @@ button img {
   width: fit-content;
 }
 
-button img {
-  max-height: 50px;
-  max-width: 50px;
-}
-
 .recipe-card img {
   height: 130px;
   width: 105px;
