@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -6,31 +7,32 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import {
   isRecipeFavorite,
-  saveFavoriteRecipes,
-  removeRecipeFromFavorites,
+  handleFavorites,
 } from '../helpers/handleFavoriteRecipes';
 
 function FavoriteAndShareButtons(props) {
   const { recipe } = props;
+
+  const { id } = useParams();
 
   const [isFavorite, setFavorite] = useState();
 
   const [isLinkCopied, copyLink] = useState(false);
 
   useEffect(() => {
-    if (recipe.meals || recipe.drinks) {
-      setFavorite(isRecipeFavorite(recipe));
-    }
-  }, [recipe]);
+    const fav = isRecipeFavorite(id);
+    setFavorite(fav);
+  }, [id, recipe]);
 
-  useEffect(() => {
-    if (isFavorite === true) {
-      saveFavoriteRecipes(recipe);
-    }
-    if (isFavorite === false) {
-      removeRecipeFromFavorites(recipe);
-    }
-  }, [isFavorite, recipe]);
+  const handleFavClick = (recipeObj) => {
+    handleFavorites(recipeObj, id);
+    const fav = isRecipeFavorite(id);
+    setFavorite((prevState) => {
+      if (prevState !== fav) {
+        return fav;
+      }
+    });
+  };
 
   const handleShareClick = () => {
     copy(window.location.href.replace('/in-progress', ''));
@@ -42,8 +44,7 @@ function FavoriteAndShareButtons(props) {
 
       <button
         type="button"
-        alt="favorite recipe button"
-        onClick={ () => setFavorite((prevState) => !prevState) }
+        onClick={ () => handleFavClick(recipe) }
       >
 
         <img
