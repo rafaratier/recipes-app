@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
 
 function RecipeProvider({ children }) {
+  const [favoriteUpdate, setFavoriteUpdate] = useState([0]);
+
   const INITIAL_CHECKBOX = [
     false,
     false,
@@ -152,6 +154,8 @@ function RecipeProvider({ children }) {
     INITIAL_DATA,
     processInStorage,
     INITIAL_DRINK_DATA,
+    favoriteUpdate,
+    setFavoriteUpdate,
   };
 
   return (
