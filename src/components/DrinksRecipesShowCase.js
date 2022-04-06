@@ -56,9 +56,7 @@ function DrinksRecipesShowCase(props) {
 
   return (
     <div className="recipes-container">
-
       {renderSearchRecipes(searchRecipes.drinks)}
-
     </div>
   );
 }

@@ -8,6 +8,11 @@
   width: fit-content;
 }
 
+button img {
+  max-height: 50px;
+  max-width: 50px;
+}
+
 .recipe-card img {
   height: 130px;
   width: 105px;
@@ -74,12 +79,13 @@
   text-decoration: line-through;
 }
 
-.button {
+
+button {
   max-height: 70px;
   max-width: 70px;
 }
 
-.button img {
+button img {
   max-height: 50px;
   max-width: 50px;
 }
