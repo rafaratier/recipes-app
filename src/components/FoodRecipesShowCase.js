@@ -29,9 +29,8 @@ function FoodRecipesShowCase(props) {
               recipeThumbnail={ strMealThumb }
               recipeName={ strMeal }
               recipeId={ idMeal }
-              searchType="card"
               recipeType="foods"
-              cardType="recipe"
+              cardType="search"
             />);
         }
         return false;
@@ -47,8 +46,7 @@ function FoodRecipesShowCase(props) {
             recipeThumbnail={ recipe.strMealThumb }
             recipeName={ recipe.strMeal }
             recipeType="foods"
-            cardType="recipe"
-            searchType="card"
+            cardType="main"
           />
         );
       }

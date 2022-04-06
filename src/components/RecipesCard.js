@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 function RecipesCard(props) {
   const { recipeThumbnail, recipeName, index,
-    recipeId, cardType, recipeType, searchType } = props;
+    recipeId, cardType, recipeType } = props;
 
   const { pathname } = useLocation();
 
-  const handleDataTestIds = (cardUseType) => {
+  const handleTitleDataTestIds = (cardUseType) => {
     if (cardUseType === 'recipe') {
       return `${index}-${cardUseType}-name`;
     }
@@ -18,12 +18,18 @@ function RecipesCard(props) {
     if (cardUseType === 'nationality') {
       return `${index}-card-name`;
     }
+    if (cardUseType === 'search') {
+      return `${index}-card-name`;
+    }
+    if (cardUseType === 'main') {
+      return `${index}-card-name`;
+    }
   };
 
   return (
     <Link
       className="recipe-card"
-      data-testid={ cardType === 'recipe'
+      data-testid={ cardType === 'recomendation'
         ? `${index}-${cardType}-card` : `${index}-recipe-card` }
       tabIndex={ 0 }
       to={ cardType !== 'recomendation' && cardType !== 'nationality'
@@ -35,7 +41,7 @@ function RecipesCard(props) {
         data-testid={ `${index}-card-img` }
       />
       <p
-        data-testid={ handleDataTestIds(cardType) }
+        data-testid={ handleTitleDataTestIds(cardType) }
       >
         {recipeName}
 
@@ -51,7 +57,6 @@ RecipesCard.propTypes = {
   recipeId: PropTypes.string.isRequired,
   cardType: PropTypes.string.isRequired,
   recipeType: PropTypes.string.isRequired,
-  searchType: PropTypes.string.isRequired,
 };
 
 export default RecipesCard;
