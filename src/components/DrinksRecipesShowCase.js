@@ -30,8 +30,7 @@ function DrinksRecipesShowCase(props) {
               recipeName={ strDrink }
               recipeId={ strDrink }
               recipeType="drinks"
-              cardType="recipe"
-              searchType="card"
+              cardType="search"
             />);
         }
         return false;
@@ -47,8 +46,7 @@ function DrinksRecipesShowCase(props) {
             recipeThumbnail={ recipe.strDrinkThumb }
             recipeName={ recipe.strDrink }
             recipeType="drinks"
-            cardType="recipe"
-            searchType="card"
+            cardType="main"
           />
         );
       }
@@ -58,7 +56,6 @@ function DrinksRecipesShowCase(props) {
 
   return (
     <div className="recipes-container">
-
       {renderSearchRecipes(searchRecipes.drinks)}
     </div>
   );
