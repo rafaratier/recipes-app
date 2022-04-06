@@ -41,8 +41,8 @@ export default FooterMenu;
 - Tem footer na tela de principal de receitas de comidas OK
 - Tem footer na tela de principal de receitas de bebidas OK
 - Tem footer na tela de explorar OK
-- Tem footer na tela de explorar comidas
-- Tem footer na tela de explorar bebidas
+- Tem footer na tela de explorar comidas OK
+- Tem footer na tela de explorar bebidas OK
 - Tem footer na tela de explorar comidas por ingrediente OK
 - Tem footer na tela de explorar bebidas por ingrediente OK
 - Tem footer na tela de explorar comidas por nacionalidade OK
