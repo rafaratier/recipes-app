@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FavoriteCard from '../components/FavoriteCard';
 import Header from '../components/Header';
 
 function FavoriteRecipes() {
   const favoriteInStorage = localStorage.getItem('favoriteRecipes');
   const favoritedRecipes = JSON.parse(favoriteInStorage);
-  const [filterButton, setFilterButton] = useState('all');
+  const [filterButton, setFilterButton] = useState('none');
   const [close, setClose] = useState(true);
+
+  useEffect(() => {
+    if (favoritedRecipes !== null && filterButton === 'none') {
+      setFilterButton('all');
+    }
+  }, [favoritedRecipes]);
 
   const handleClick = (e) => {
     setFilterButton(e.target.value);
@@ -18,7 +24,7 @@ function FavoriteRecipes() {
 
   return (
     <div>
-      <Header title="favorite Recipes" />
+      <Header title="Favorite Recipes" />
       <button
         type="button"
         data-testid="filter-by-all-btn"

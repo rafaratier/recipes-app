@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DoneCard from '../components/DoneCard';
 import Header from '../components/Header';
 
 function DoneRecipes() {
   const doneInStorage = localStorage.getItem('doneRecipes');
   const doneRecipes = JSON.parse(doneInStorage);
-  const [filterButton, setFilterButton] = useState('all');
+  const [filterButton, setFilterButton] = useState('none');
+
+  useEffect(() => {
+    if (doneRecipes !== null && filterButton === 'none') {
+      setFilterButton('all');
+    }
+  }, [doneRecipes]);
 
   const handleClick = (e) => {
     setFilterButton(e.target.value);
