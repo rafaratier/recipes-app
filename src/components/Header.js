@@ -101,7 +101,7 @@ function Header(props) {
   return (
     <section>
       <header>
-        <div className="header-content">
+        <div className="header-content bg-warning">
           <Link
             to="/profile"
             data-testid="profile-top-btn"
@@ -129,7 +129,7 @@ function Header(props) {
           { title === 'Favorite Recipes' && !renderSearchButton() }
         </div>
       </header>
-      <div className="searchInput-container">
+      <div className="searchInput-container bg-warning">
         {
           state.isVisible && SearchBar(
             handleSearch,

@@ -33,6 +33,7 @@ function SearchBar(handleSearch, handleSearchFor, fetchByMeals, fetchByDrinks) {
 
       <button
         type="button"
+        className="btn btn-warning btn-light"
         data-testid="exec-search-btn"
         onClick={ getRecipes }
       >
