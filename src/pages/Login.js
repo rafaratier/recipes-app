@@ -43,31 +43,37 @@ function Login() {
       {login && <Redirect to="/foods" />}
       <form className="login-form">
         <div className="form-wrapper">
-          <input
-            name="user"
-            type="email"
-            onChange={ (e) => onUserEmailChange(e) }
-            data-testid="email-input"
-            placeholder="Digite seu e-mail"
-            required
-          />
-          <input
-            name="password"
-            type="password"
-            onChange={ (e) => onPasswordChange(e) }
-            data-testid="password-input"
-            placeholder="Digite sua senha"
-            required
-          />
-          <button
-            type="button"
-            data-testid="login-submit-btn"
-            onClick={ handleSubmit }
-            className="login-submit-btn"
-            disabled={ isButtonDisabled }
-          >
-            Enter
-          </button>
+          <div className="mb-3">
+            <input
+              name="user"
+              type="email"
+              onChange={ (e) => onUserEmailChange(e) }
+              data-testid="email-input"
+              placeholder="Digite seu e-mail"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              name="password"
+              type="password"
+              onChange={ (e) => onPasswordChange(e) }
+              data-testid="password-input"
+              placeholder="Digite sua senha"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <button
+              type="button"
+              data-testid="login-submit-btn"
+              onClick={ handleSubmit }
+              className="btn btn-warning"
+              disabled={ isButtonDisabled }
+            >
+              Enter
+            </button>
+          </div>
         </div>
       </form>
     </section>

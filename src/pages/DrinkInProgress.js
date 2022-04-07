@@ -89,7 +89,7 @@ function DrinkInProgress() {
   const onAddingIngredient = (index) => {
     const newObj = {
       cocktails: {},
-      meals: {},
+      drinks: {},
     };
     const objRecipeInStorage = processInStorage();
     if (objRecipeInStorage === null) {
@@ -107,6 +107,53 @@ function DrinkInProgress() {
       newObj.cocktails[id] = [ingredientsInUse];
       localStorage.setItem('inProgressRecipes', JSON.stringify(newObj));
     }
+  };
+
+  const doneRecipe = () => {
+    const dt = new Date().toLocaleDateString();
+    const objRecipeInStorage = processInStorage();
+    objRecipeInStorage.cocktails[id] = [];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(objRecipeInStorage));
+    let doneObj;
+
+    if (recipe.drinks[0].strTags === null) {
+      doneObj = {
+        id: recipe.drinks[0].idDrink,
+        type: 'food',
+        nationality: recipe.drinks[0].strArea,
+        category: recipe.drinks[0].strCategory,
+        alcoholicOrNot: recipe.drinks[0].strAlcoholic,
+        name: recipe.drinks[0].strDrink,
+        image: recipe.drinks[0].strDrinkThumb,
+        doneDate: dt,
+        tags: [''],
+      };
+    } else {
+      doneObj = {
+        id: recipe.drinks[0].idDrink,
+        type: 'food',
+        nationality: recipe.drinks[0].strArea,
+        category: recipe.drinks[0].strCategory,
+        alcoholicOrNot: recipe.drinks[0].strAlcoholic,
+        name: recipe.drinks[0].strDrink,
+        image: recipe.drinks[0].strDrinkThumb,
+        doneDate: dt,
+        tags: recipe.drinks[0].strTags.split(', '),
+      };
+    }
+
+    const doneInStorage = localStorage.getItem('doneRecipes');
+    let doneRecipes = JSON.parse(doneInStorage);
+
+    if (doneRecipes === null) {
+      doneRecipes = [doneObj];
+      localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+    } else {
+      doneRecipes.push(doneObj);
+      localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+    }
+
+    history.push('/done-recipes');
   };
 
   return (
@@ -140,7 +187,7 @@ function DrinkInProgress() {
                         <input
                           type="checkbox"
                           value={ ingredient }
-                          className={ ingredient }
+                          className="ingredient-checkbox"
                           onChange={ () => onAddingIngredient(index) }
                           checked={ ingredientsInUse.some((e) => e === ingredient) }
                         />
@@ -160,7 +207,7 @@ function DrinkInProgress() {
         type="button"
         data-testid="finish-recipe-btn"
         disabled={ finishIsAble }
-        onClick={ () => history.push('/done-recipes') }
+        onClick={ doneRecipe }
       >
         Finalizar Receita
       </button>
