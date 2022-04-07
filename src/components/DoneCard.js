@@ -63,7 +63,7 @@ function DoneCard(props) {
       </div>
       <div className="tags-and-share">
         <div className="tags">
-          { tags && tags.map((tag) => (
+          { tags !== null && tags.map((tag) => (
             <span
               key={ tag }
               className="tags-box"

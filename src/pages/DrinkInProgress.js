@@ -114,17 +114,33 @@ function DrinkInProgress() {
     const objRecipeInStorage = processInStorage();
     objRecipeInStorage.cocktails[id] = [];
     localStorage.setItem('inProgressRecipes', JSON.stringify(objRecipeInStorage));
-    const doneObj = {
-      id: recipe.drinks[0].idDrink,
-      type: 'food',
-      nationality: recipe.drinks[0].strArea,
-      category: recipe.drinks[0].strCategory,
-      alcoholicOrNot: recipe.drinks[0].strAlcoholic,
-      name: recipe.drinks[0].strDrink,
-      image: recipe.drinks[0].strDrinkThumb,
-      doneDate: dt,
-      tags: recipe.drinks[0].strTags.split(', '),
-    };
+    let doneObj;
+
+    if (recipe.drinks[0].strTags === null) {
+      doneObj = {
+        id: recipe.drinks[0].idDrink,
+        type: 'food',
+        nationality: recipe.drinks[0].strArea,
+        category: recipe.drinks[0].strCategory,
+        alcoholicOrNot: recipe.drinks[0].strAlcoholic,
+        name: recipe.drinks[0].strDrink,
+        image: recipe.drinks[0].strDrinkThumb,
+        doneDate: dt,
+        tags: [''],
+      };
+    } else {
+      doneObj = {
+        id: recipe.drinks[0].idDrink,
+        type: 'food',
+        nationality: recipe.drinks[0].strArea,
+        category: recipe.drinks[0].strCategory,
+        alcoholicOrNot: recipe.drinks[0].strAlcoholic,
+        name: recipe.drinks[0].strDrink,
+        image: recipe.drinks[0].strDrinkThumb,
+        doneDate: dt,
+        tags: recipe.drinks[0].strTags.split(', '),
+      };
+    }
 
     const doneInStorage = localStorage.getItem('doneRecipes');
     let doneRecipes = JSON.parse(doneInStorage);
